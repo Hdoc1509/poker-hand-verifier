@@ -1,0 +1,26 @@
+{
+  "name": "poker-hand-verifier",
+  "version": "1.0.0",
+  "description": "Provides a lot a functions to verify a hand of poker with 5 cards.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hdoc1509/poker-hand-verifier.git"
+  },
+  "keywords": [
+    "poker",
+    "poker hand",
+    "evaluator",
+    "verifier"
+  ],
+  "author": "Hdoc1509",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hdoc1509/poker-hand-verifier/issues"
+  },
+  "homepage": "https://github.com/Hdoc1509/poker-hand-verifier#readme"
+}
