@@ -1,2 +1,7 @@
+# folders
 node_modules
-dist
+esm
+cjs
+
+# files
+package-lock.json
