@@ -6,7 +6,26 @@ export type NumberMatches = {
 };
 
 /** Check if all cards has different numbers */
-export const allDifferentNumbers = (cards: Array<Card>): boolean => {
+export const allDifferentNumbers = (cards: Array<Card> = []): boolean => {
+  if (!Array.isArray(cards)) throw new Error('Expected an Array as argument');
+
+  if (cards.length < 2)
+    throw new Error('Expected an Array of 2 or more cards as argument');
+
+  if (cards.some((card) => card?.number == null || card?.suit == null)) {
+    const invalidCardIndex = cards.findIndex(
+      (card) => card?.number == null || card?.suit == null
+    );
+
+    throw new Error(
+      `All cards must have "number" and "suit" properties initialized correctly.\nFound invalid card at index ${invalidCardIndex}`
+    );
+  }
+
+  const repeatedCards = new Set(cards.map(({ number, suit }) => `${number}${suit}`));
+
+  if (repeatedCards.size < cards.length) throw new Error(`Array can not have repeated cards. Found repeated card: ${Array.from(repeatedCards)[0]}`);
+
   const numbers = new Set(cards.map(({ number }) => number));
 
   return numbers.size === cards.length;
