@@ -2,8 +2,9 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "./types",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true
   },
   "include": ["./src/index.ts"],
-  "exclude": ["./tests/*.ts"]
+  "exclude": ["./tests/*.test.ts"]
 }
