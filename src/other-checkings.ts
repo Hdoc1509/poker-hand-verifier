@@ -22,9 +22,16 @@ export const allDifferentNumbers = (cards: Array<Card> = []): boolean => {
     );
   }
 
-  const repeatedCards = new Set(cards.map(({ number, suit }) => `${number}${suit}`));
+  const repeatedCards = new Set(
+    cards.map(({ number, suit }) => `${number}${suit}`)
+  );
 
-  if (repeatedCards.size < cards.length) throw new Error(`Array can not have repeated cards. Found repeated card: ${Array.from(repeatedCards)[0]}`);
+  if (repeatedCards.size < cards.length)
+    throw new Error(
+      `Array can not have repeated cards. Found repeated card: ${
+        Array.from(repeatedCards)[0]
+      }`
+    );
 
   const numbers = new Set(cards.map(({ number }) => number));
 
