@@ -22,7 +22,7 @@
   "scripts": {
     "build": "node build.js",
     "build-types": "npm-dts --output types/types.d.ts generate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest tests --colors --verbose"
   },
   "repository": {
     "type": "git",
