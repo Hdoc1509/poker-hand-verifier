@@ -1,12 +1,9 @@
-//@ts-nocheck
+// @ts-ignore
 import { toBeFalse, toBeTrue } from 'jest-extended';
+import { invalidCards, oneCard } from '../global-test-variables';
 import { allDifferentNumbers } from '../src/other-checkings';
 
 expect.extend({ toBeFalse, toBeTrue });
-
-const invalidCards = [{ invalidProp: 'anything', suit: 'H' }, {}];
-
-const oneCard = [{ number: '1', suit: 'C' }];
 
 const sameCard = [
   { number: '3', suit: 'C' },
@@ -32,14 +29,17 @@ describe('--- allDifferentNumbers() ---', () => {
   });
 
   test('Arguments is not an Array throws an Error', () => {
+    // @ts-ignore
     expect(() => allDifferentNumbers('not an array')).toThrow(
       'Expected an Array as argument'
     );
 
+    // @ts-ignore
     expect(() => allDifferentNumbers(15)).toThrow(
       'Expected an Array as argument'
     );
 
+    // @ts-ignore
     expect(() => allDifferentNumbers(true)).toThrow(
       'Expected an Array as argument'
     );
@@ -58,8 +58,9 @@ describe('--- allDifferentNumbers() ---', () => {
   });
 
   test('Array with invalid cards throws an Error', () => {
+    // @ts-ignore
     expect(() => allDifferentNumbers(invalidCards)).toThrow(
-      'All cards must have "number" and "suit" properties initialized correctly.\nFound invalid card at index 0'
+      'All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index 0'
     );
   });
 
