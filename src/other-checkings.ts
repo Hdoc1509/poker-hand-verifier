@@ -17,7 +17,7 @@ export const allDifferentNumbers = (cards: Array<Card> = []): boolean => {
   if (cards.length < 2)
     throw new Error('Expected an Array of 2 or more cards as argument');
 
-  if (getInvalidCardIndex(cards) === NOT_FOUND_INVALID_INDEX)
+  if (getInvalidCardIndex(cards) !== NOT_FOUND_INVALID_INDEX)
     throw new Error(
       `All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index ${getInvalidCardIndex(
         cards
