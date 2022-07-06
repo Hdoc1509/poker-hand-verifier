@@ -1,6 +1,6 @@
 // @ts-ignore
 import { toBeFalse, toBeTrue } from 'jest-extended';
-import { Card } from '../src/index.js';
+import { Card } from '../src';
 import { allDifferentNumbers } from '../src/other-checkings';
 
 expect.extend({ toBeFalse, toBeTrue });
