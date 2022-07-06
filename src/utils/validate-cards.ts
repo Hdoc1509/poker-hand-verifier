@@ -6,32 +6,33 @@ type ValidatedData = {
   error?: string;
 };
 
-export const validateCards = (cards: Array<any>): ValidatedData => {
+export const validateCards = (cards: Array<any> = []): ValidatedData => {
   const validation: ValidatedData = { ok: true };
 
-  if (!Array.isArray(cards)) {
-    validation.ok = false;
-    validation.error = 'Expected an Array as argument';
-  }
+  if (!Array.isArray(cards))
+    return { ok: false, error: 'Expected an Array as argument' };
 
-  if (cards.length < 2) {
-    validation.ok = false;
-    validation.error = 'Expected an Array of 2 or more cards as argument';
-  }
+  if (cards.length < 2)
+    return {
+      ok: false,
+      error: 'Expected an Array of 2 or more elements as argument',
+    };
 
   const invalidCardIndex = getInvalidCardIndex(cards);
 
-  if (invalidCardIndex !== NOT_FOUND_INVALID_INDEX) {
-    validation.ok = false;
-    validation.error = `All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index ${invalidCardIndex}`;
-  }
+  if (invalidCardIndex !== NOT_FOUND_INVALID_INDEX)
+    return {
+      ok: false,
+      error: `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${invalidCardIndex}`,
+    };
 
   const repeatedCard = getRepeatedCard(cards);
 
-  if (repeatedCard) {
-    validation.ok = false;
-    validation.error = `Array can not have repeated cards. Found repeated card: ${repeatedCard}`;
-  }
+  if (repeatedCard)
+    return {
+      ok: false,
+      error: `Array can not have repeated cards. Found repeated card: ${repeatedCard}`,
+    };
 
   return validation;
 };
