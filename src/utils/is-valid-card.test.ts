@@ -5,13 +5,12 @@ import {
   isValidCard,
   NOT_FOUND_INVALID_INDEX,
 } from './is-valid-card';
-import {
-  invalidCard,
-  invalidCards,
-  validCard,
-} from '../../global-test-variables';
 
 expect.extend({ toBeFalse, toBeTrue });
+
+const invalidCard = { invalid: true, prop: 'not allowed' };
+const validCard = { number: 'A', suit: 'S' };
+const invalidCards = [invalidCard, {}, 'random'];
 
 describe('--- isValidCard() ---', () => {
   test('Invalid card returns false', () => {
