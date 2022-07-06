@@ -20,7 +20,7 @@ const sameSuit = [
 describe('--- allSameSuit() ---', () => {
   test('No argument throws an Error', () => {
     expect(() => allSameSuit()).toThrow(
-      'Expect an Array of 2 or more cards as argument'
+      'Expected an Array of 2 or more cards as argument'
     );
   });
 
@@ -50,7 +50,7 @@ describe('--- allSameSuit() ---', () => {
 
   test('Array with repeated cards throws an Error', () => {
     expect(() => allSameSuit(repeatedCard)).toThrow(
-      'Array can not have repeated cards. Found repeated card: AS'
+      'Array can not have repeated cards. Found repeated card: KD'
     );
   });
 
