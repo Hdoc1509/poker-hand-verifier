@@ -1,10 +1,12 @@
 // @ts-ignore
 import { toBeFalse, toBeTrue } from 'jest-extended';
+import { Card } from '../src/index.js';
 import { allDifferentNumbers } from '../src/other-checkings';
 
 expect.extend({ toBeFalse, toBeTrue });
 
-const oneCard = [{ number: 'A', suit: 'C' }];
+const invalidCards = [{ invalidProp: 'anything', suit: 'H' }, {}];
+const oneCard = [{ number: '3', suit: 'C' }];
 const sameCard = [...oneCard, ...oneCard];
 const validSameNumber = [
   { number: '4', suit: 'D' },
@@ -16,7 +18,6 @@ const validDifferentCards = [
   { number: '3', suit: 'C' },
 ];
 
-
 describe('--- allDifferentNumbers() ---', () => {
   test('No argument trhows an Error', () => {
     expect(() => allDifferentNumbers()).toThrow(
@@ -25,18 +26,15 @@ describe('--- allDifferentNumbers() ---', () => {
   });
 
   test('Arguments is not an Array throws an Error', () => {
-    // @ts-ignore
-    expect(() => allDifferentNumbers('not an array')).toThrow(
+    expect(() =>
+      allDifferentNumbers('not an array' as unknown as Array<Card>)
+    ).toThrow('Expected an Array as argument');
+
+    expect(() => allDifferentNumbers(15 as unknown as Array<Card>)).toThrow(
       'Expected an Array as argument'
     );
 
-    // @ts-ignore
-    expect(() => allDifferentNumbers(15)).toThrow(
-      'Expected an Array as argument'
-    );
-
-    // @ts-ignore
-    expect(() => allDifferentNumbers(true)).toThrow(
+    expect(() => allDifferentNumbers(true as unknown as Array<Card>)).toThrow(
       'Expected an Array as argument'
     );
   });
@@ -54,8 +52,7 @@ describe('--- allDifferentNumbers() ---', () => {
   });
 
   test('Array with invalid cards throws an Error', () => {
-    // @ts-ignore
-    expect(() => allDifferentNumbers(invalidCards)).toThrow(
+    expect(() => allDifferentNumbers(invalidCards as Array<Card>)).toThrow(
       'All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index 0'
     );
   });
