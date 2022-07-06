@@ -37,15 +37,15 @@ describe('--- allDifferentNumbers() ---', () => {
     );
   });
 
-  test('Array that have less than 2 cards throws an Error', () => {
-    expect(() => allDifferentNumbers(oneCard)).toThrow(
-      'Expected an Array of 2 or more cards as argument'
-    );
-  });
-
   test('Array with invalid cards throws an Error', () => {
     expect(() => allDifferentNumbers(invalidCards as Array<Card>)).toThrow(
       'All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index 0'
+    );
+  });
+
+  test('Array that have less than 2 cards throws an Error', () => {
+    expect(() => allDifferentNumbers(oneCard)).toThrow(
+      'Expected an Array of 2 or more cards as argument'
     );
   });
 
