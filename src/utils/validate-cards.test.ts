@@ -7,7 +7,7 @@ describe('--- validateCards() ---', () => {
   test('No argument returns object with ok false and error message', () => {
     expect(validateCards()).toEqual({
       ok: false,
-      error: 'Expected an Array of 2 or more elementes as argument',
+      error: 'Expected an Array of 2 or more elements as argument',
     });
   });
 
@@ -21,7 +21,7 @@ describe('--- validateCards() ---', () => {
   test('Array with less than 2 elements returns object with ok false with error message', () => {
     expect(validateCards([])).toEqual({
       ok: false,
-      error: 'Expected an Array of 2 or more elementes as argument',
+      error: 'Expected an Array of 2 or more elements as argument',
     });
     expect(validateCards([validCard])).toEqual({
       ok: false,
@@ -53,6 +53,6 @@ describe('--- validateCards() ---', () => {
         { number: '9', suit: 'D' },
         { number: 'A', suit: 'S' },
       ])
-    ).toBe({ ok: true });
+    ).toEqual({ ok: true });
   });
 });
