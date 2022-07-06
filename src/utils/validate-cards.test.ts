@@ -29,11 +29,18 @@ describe('--- validateCards() ---', () => {
     });
   });
 
-  test('If there is an invalid cards returns object with ok false with error message', () => {
+  test('If there is only an invalid card returns error object for elements quantity', () => {
+    expect(validateCards([invalidCard])).toEqual({
+      ok: false,
+      error: 'Expected an Array of 2 or more elements as argument',
+    });
+  });
+
+  test('If there is an invalid card returns object with ok false with error message', () => {
     expect(validateCards([validCard, invalidCard])).toEqual({
       ok: false,
       error:
-        'All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index 1',
+        'All cards must have "number" and "suit" properties values correctly. Found invalid card at index 1',
     });
   });
 
@@ -43,6 +50,21 @@ describe('--- validateCards() ---', () => {
     ).toEqual({
       ok: false,
       error: 'Array can not have repeated cards. Found repeated card: 5H',
+    });
+  });
+
+  test('If there is an invalid card and a repeated card returns error object for invalid card', () => {
+    expect(
+      validateCards([
+        validCard,
+        { number: 'Q', suit: 'C' },
+        invalidCard,
+        validCard,
+      ])
+    ).toEqual({
+      ok: false,
+      error:
+        'All cards must have "number" and "suit" properties values correctly. Found invalid card at index 2',
     });
   });
 
