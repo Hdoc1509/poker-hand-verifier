@@ -29,14 +29,6 @@ describe('--- allDifferentNumbers() ---', () => {
     expect(() =>
       allDifferentNumbers('not an array' as unknown as Array<Card>)
     ).toThrow('Expected an Array as argument');
-
-    expect(() => allDifferentNumbers(15 as unknown as Array<Card>)).toThrow(
-      'Expected an Array as argument'
-    );
-
-    expect(() => allDifferentNumbers(true as unknown as Array<Card>)).toThrow(
-      'Expected an Array as argument'
-    );
   });
 
   test('Empty array as argument throws an Error', () => {
