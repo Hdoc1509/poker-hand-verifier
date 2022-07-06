@@ -37,7 +37,26 @@ export const allDifferentNumbers = (cards: Array<Card> = []): boolean => {
 };
 
 /** Check if all cards has the same suit */
-export const allSameSuit = (cards: Array<Card>): boolean => {
+export const allSameSuit = (cards: Array<Card> = []): boolean => {
+  if (!Array.isArray(cards)) throw new Error('Expected an Array as argument');
+
+  if (cards.length < 2)
+    throw new Error('Expected an Array of 2 or more cards as argument');
+
+  if (getInvalidCardIndex(cards) !== NOT_FOUND_INVALID_INDEX)
+    throw new Error(
+      `All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index ${getInvalidCardIndex(
+        cards
+      )}`
+    );
+
+  if (getRepeatedCard(cards))
+    throw new Error(
+      `Array can not have repeated cards. Found repeated card: ${getRepeatedCard(
+        cards
+      )}`
+    );
+
   const suits = new Set(cards.map(({ suit }) => suit));
 
   return suits.size === 1;
