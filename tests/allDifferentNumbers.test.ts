@@ -1,25 +1,21 @@
 // @ts-ignore
 import { toBeFalse, toBeTrue } from 'jest-extended';
-import { invalidCards, oneCard } from '../global-test-variables';
 import { allDifferentNumbers } from '../src/other-checkings';
 
 expect.extend({ toBeFalse, toBeTrue });
 
-const sameCard = [
-  { number: '3', suit: 'C' },
-  { number: '3', suit: 'C' },
-];
-
-const validDifferent = [
-  { number: '2', suit: 'H' },
-  { number: '3', suit: 'C' },
-];
-
-const validSame = [
+const oneCard = [{ number: 'A', suit: 'C' }];
+const sameCard = [...oneCard, ...oneCard];
+const validSameNumber = [
   { number: '4', suit: 'D' },
   { number: '4', suit: 'S' },
   { number: '4', suit: 'C' },
 ];
+const validDifferentCards = [
+  { number: '2', suit: 'H' },
+  { number: '3', suit: 'C' },
+];
+
 
 describe('--- allDifferentNumbers() ---', () => {
   test('No argument trhows an Error', () => {
@@ -71,10 +67,10 @@ describe('--- allDifferentNumbers() ---', () => {
   });
 
   test('All cards with the same number returns false', () => {
-    expect(allDifferentNumbers(validSame)).toBeFalse();
+    expect(allDifferentNumbers(validSameNumber)).toBeFalse();
   });
 
   test('All cards with different numbers returns true', () => {
-    expect(allDifferentNumbers(validDifferent)).toBeTrue();
+    expect(allDifferentNumbers(validDifferentCards)).toBeTrue();
   });
 });
