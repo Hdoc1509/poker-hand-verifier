@@ -1,4 +1,9 @@
 import { Card } from './index';
+import {
+  getInvalidCardIndex,
+  NOT_FOUND_INVALID_INDEX,
+} from './utils/is-valid-card';
+import { getRepeatedCard } from './utils/repeated-card';
 
 export type NumberMatches = {
   matches: Array<Card>;
@@ -12,25 +17,18 @@ export const allDifferentNumbers = (cards: Array<Card> = []): boolean => {
   if (cards.length < 2)
     throw new Error('Expected an Array of 2 or more cards as argument');
 
-  if (cards.some((card) => card?.number == null || card?.suit == null)) {
-    const invalidCardIndex = cards.findIndex(
-      (card) => card?.number == null || card?.suit == null
+  if (getInvalidCardIndex(cards) === NOT_FOUND_INVALID_INDEX)
+    throw new Error(
+      `All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index ${getInvalidCardIndex(
+        cards
+      )}`
     );
 
+  if (getRepeatedCard(cards))
     throw new Error(
-      `All cards must have "number" and "suit" properties initialized correctly.\nFound invalid card at index ${invalidCardIndex}`
-    );
-  }
-
-  const repeatedCards = new Set(
-    cards.map(({ number, suit }) => `${number}${suit}`)
-  );
-
-  if (repeatedCards.size < cards.length)
-    throw new Error(
-      `Array can not have repeated cards. Found repeated card: ${
-        Array.from(repeatedCards)[0]
-      }`
+      `Array can not have repeated cards. Found repeated card: ${getRepeatedCard(
+        cards
+      )}`
     );
 
   const numbers = new Set(cards.map(({ number }) => number));
