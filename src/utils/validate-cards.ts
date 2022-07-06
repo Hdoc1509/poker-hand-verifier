@@ -1,38 +1,37 @@
 import { getInvalidCardIndex, NOT_FOUND_INVALID_INDEX } from './is-valid-card';
 import { getRepeatedCard } from './repeated-card';
 
+export const ERROR_MESSAGE = Object.freeze({
+  NotArray: 'Expected an Array as argument',
+  QuantityCards: (received: number, { minimum = 2, maximum = 5 } = {}) =>
+    `Expected an Array of minimum ${minimum} and maximum ${maximum} cards. Received ${received} instead`,
+  InvalidCard: (index: number) =>
+    `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${index}`,
+  RepeatedCard: (card: string) =>
+    `Array can not have repeated cards. Found repeated card: ${card}`,
+});
+
 type ValidatedData = {
   ok: boolean;
   error?: string;
 };
 
 export const validateCards = (cards: Array<any> = []): ValidatedData => {
-  const validation: ValidatedData = { ok: true };
-
   if (!Array.isArray(cards))
-    return { ok: false, error: 'Expected an Array as argument' };
+    return { ok: false, error: ERROR_MESSAGE.NotArray };
 
   if (cards.length < 2)
-    return {
-      ok: false,
-      error: 'Expected an Array of 2 or more elements as argument',
-    };
+    return { ok: false, error: ERROR_MESSAGE.QuantityCards(cards.length) };
 
   const invalidCardIndex = getInvalidCardIndex(cards);
 
   if (invalidCardIndex !== NOT_FOUND_INVALID_INDEX)
-    return {
-      ok: false,
-      error: `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${invalidCardIndex}`,
-    };
+    return { ok: false, error: ERROR_MESSAGE.InvalidCard(invalidCardIndex) };
 
   const repeatedCard = getRepeatedCard(cards);
 
   if (repeatedCard)
-    return {
-      ok: false,
-      error: `Array can not have repeated cards. Found repeated card: ${repeatedCard}`,
-    };
+    return { ok: false, error: ERROR_MESSAGE.RepeatedCard(repeatedCard) };
 
-  return validation;
+  return { ok: true };
 };
