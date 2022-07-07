@@ -21,9 +21,7 @@ const validDifferentCards = [
 
 describe('--- allDifferentNumbers() ---', () => {
   test('No argument trhows an Error', () => {
-    expect(() => allDifferentNumbers()).toThrow(
-      ERROR_MESSAGE.QuantityCards(0, { minimum: 2 })
-    );
+    expect(() => allDifferentNumbers()).toThrow(ERROR_MESSAGE.QuantityCards(0));
   });
 
   test('Arguments is not an Array throws an Error', () => {
@@ -34,7 +32,7 @@ describe('--- allDifferentNumbers() ---', () => {
 
   test('Empty array as argument throws an Error', () => {
     expect(() => allDifferentNumbers([])).toThrow(
-      ERROR_MESSAGE.QuantityCards(0, { minimum: 2 })
+      ERROR_MESSAGE.QuantityCards(0)
     );
   });
 
@@ -46,7 +44,7 @@ describe('--- allDifferentNumbers() ---', () => {
 
   test('Array that have less than 2 cards throws an Error', () => {
     expect(() => allDifferentNumbers(oneCard)).toThrow(
-      ERROR_MESSAGE.QuantityCards(1, { minimum: 2 })
+      ERROR_MESSAGE.QuantityCards(1)
     );
   });
 
