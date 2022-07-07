@@ -2,6 +2,7 @@
 import { toBeFalse, toBeTrue } from 'jest-extended';
 import { Card } from '../src';
 import { allSameSuit } from '../src/other-checkings';
+import { ERROR_MESSAGE } from '../src/utils/validate-cards';
 
 expect.extend({ toBeFalse, toBeTrue });
 
@@ -19,38 +20,36 @@ const sameSuit = [
 
 describe('--- allSameSuit() ---', () => {
   test('No argument throws an Error', () => {
-    expect(() => allSameSuit()).toThrow(
-      'Expected an Array of 2 or more cards as argument'
-    );
+    expect(() => allSameSuit()).toThrow(ERROR_MESSAGE.QuantityCards(0));
   });
 
   test('Argument is not an Array throws an Error', () => {
     expect(() => allSameSuit({} as Array<Card>)).toThrow(
-      'Expected an Array as argument'
+      ERROR_MESSAGE.NotArray
     );
   });
 
   test('Empty Array as argument throws an Error', () => {
     expect(() => allSameSuit([])).toThrow(
-      'Expected an Array of 2 or more cards as argument'
+      ERROR_MESSAGE.QuantityCards(0)
     );
   });
 
   test('Array with invalid cards throws an Error', () => {
     expect(() => allSameSuit(invalidCards as Array<Card>)).toThrow(
-      'All cards must have "number" and "suit" properties values correctly.\nFound invalid card at index 1'
+      ERROR_MESSAGE.InvalidCard(1)
     );
   });
 
   test('Array that have less than 2 cards throws an Error', () => {
     expect(() => allSameSuit(oneCard)).toThrow(
-      'Expected an Array of 2 or more cards as argument'
+      ERROR_MESSAGE.QuantityCards(1)
     );
   });
 
   test('Array with repeated cards throws an Error', () => {
     expect(() => allSameSuit(repeatedCard)).toThrow(
-      'Array can not have repeated cards. Found repeated card: KD'
+      ERROR_MESSAGE.RepeatedCard('KD')
     );
   });
 
