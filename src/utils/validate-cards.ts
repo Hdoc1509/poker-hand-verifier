@@ -20,7 +20,7 @@ export const validateCards = (cards: Array<any> = []): ValidatedData => {
   if (!Array.isArray(cards))
     return { ok: false, error: ERROR_MESSAGE.NotArray };
 
-  if (cards.length < 2)
+  if (cards.length <= 1 || cards.length > 5)
     return { ok: false, error: ERROR_MESSAGE.QuantityCards(cards.length) };
 
   const invalidCardIndex = getInvalidCardIndex(cards);
