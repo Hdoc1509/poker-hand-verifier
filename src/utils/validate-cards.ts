@@ -19,12 +19,22 @@ type ValidatedData = {
   error?: string;
 };
 
-export const validateCards = (cards: Array<any> = []): ValidatedData => {
+type options = {
+  minimum?: number;
+};
+
+export const validateCards = (
+  cards: Array<any> = [],
+  { minimum = 2 }: options = {}
+): ValidatedData => {
   if (!Array.isArray(cards))
     return { ok: false, error: ERROR_MESSAGE.NotArray };
 
-  if (cards.length <= 1 || cards.length > 5)
-    return { ok: false, error: ERROR_MESSAGE.QuantityCards(cards.length) };
+  if (cards.length < minimum || cards.length > 5)
+    return {
+      ok: false,
+      error: ERROR_MESSAGE.QuantityCards(cards.length, { minimum }),
+    };
 
   const invalidCardIndex = getInvalidCardIndex(cards);
 
