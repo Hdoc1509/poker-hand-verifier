@@ -1,4 +1,5 @@
 import { Card } from './index';
+import { VALID_NUMBER } from './utils/is-valid-card';
 import { validateCards } from './utils/validate-cards';
 
 export type NumberMatches = {
@@ -32,7 +33,19 @@ export const allSameSuit = (cards: Array<Card> = []): boolean => {
 export const numberMatches = (
   cards: Array<Card>,
   numberToCheck: string
-): NumberMatches => ({
-  matches: cards.filter(({ number }) => number === numberToCheck),
-  notMatches: cards.filter(({ number }) => number !== numberToCheck),
-});
+): NumberMatches => {
+  const validation = validateCards(cards);
+
+  if (!validation.ok) throw new Error(validation.error);
+
+  if (typeof numberToCheck !== 'string')
+    throw new TypeError('Argument "numberToCheck" must be an String');
+
+  if (numberToCheck.match(VALID_NUMBER) === null)
+    throw new Error('Argument "numberToCheck" is not a valid number');
+
+  return {
+    matches: cards.filter(({ number }) => number === numberToCheck),
+    notMatches: cards.filter(({ number }) => number !== numberToCheck),
+  };
+};
