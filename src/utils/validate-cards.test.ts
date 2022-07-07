@@ -1,4 +1,4 @@
-import { validateCards } from './validate-cards';
+import { validateCards, ERROR_MESSAGE } from './validate-cards';
 
 const validCard = { number: '5', suit: 'H' };
 const invalidCard = { number: '3' };
@@ -7,40 +7,40 @@ describe('--- validateCards() ---', () => {
   test('No argument returns object with ok false and error message', () => {
     expect(validateCards()).toEqual({
       ok: false,
-      error: 'Expected an Array of 2 or more elements as argument',
+      error: ERROR_MESSAGE.QuantityCards(0),
     });
   });
 
   test('If argument is not an Array returns object with ok false and error message', () => {
     expect(validateCards('invalid' as unknown as Array<any>)).toEqual({
       ok: false,
-      error: 'Expected an Array as argument',
+      error: ERROR_MESSAGE.NotArray,
     });
   });
 
   test('Array with less than 2 elements returns object with ok false with error message', () => {
     expect(validateCards([])).toEqual({
       ok: false,
-      error: 'Expected an Array of 2 or more elements as argument',
+      error: ERROR_MESSAGE.QuantityCards(0),
     });
+
     expect(validateCards([validCard])).toEqual({
       ok: false,
-      error: 'Expected an Array of 2 or more elements as argument',
+      error: ERROR_MESSAGE.QuantityCards(1),
     });
   });
 
   test('If there is only an invalid card returns error object for elements quantity', () => {
     expect(validateCards([invalidCard])).toEqual({
       ok: false,
-      error: 'Expected an Array of 2 or more elements as argument',
+      error: ERROR_MESSAGE.QuantityCards(1),
     });
   });
 
   test('If there is an invalid card returns object with ok false with error message', () => {
     expect(validateCards([validCard, invalidCard])).toEqual({
       ok: false,
-      error:
-        'All cards must have "number" and "suit" properties values correctly. Found invalid card at index 1',
+      error: ERROR_MESSAGE.InvalidCard(1),
     });
   });
 
@@ -49,7 +49,7 @@ describe('--- validateCards() ---', () => {
       validateCards([validCard, { number: 'K', suit: 'D' }, validCard])
     ).toEqual({
       ok: false,
-      error: 'Array can not have repeated cards. Found repeated card: 5H',
+      error: ERROR_MESSAGE.RepeatedCard('5H'),
     });
   });
 
@@ -63,8 +63,7 @@ describe('--- validateCards() ---', () => {
       ])
     ).toEqual({
       ok: false,
-      error:
-        'All cards must have "number" and "suit" properties values correctly. Found invalid card at index 2',
+      error: ERROR_MESSAGE.InvalidCard(2),
     });
   });
 
