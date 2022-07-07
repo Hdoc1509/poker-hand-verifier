@@ -35,9 +35,9 @@ describe('--- numberMatches() ---', () => {
   });
 
   test('First argument is not an Array throws an Error', () => {
-    expect(() => numberMatches('invalid', '1')).toThrow(
-      `Invalid first argument. ${ERROR_MESSAGE.NotArray}`
-    );
+    expect(() =>
+      numberMatches('invalid' as unknown as Array<Card>, '1')
+    ).toThrow(`Invalid first argument. ${ERROR_MESSAGE.NotArray}`);
   });
 
   test('First argument is not a valid Array of cards throws an specific Error', () => {
