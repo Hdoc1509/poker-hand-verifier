@@ -1,9 +1,4 @@
 import { Card } from './index';
-import {
-  getInvalidCardIndex,
-  NOT_FOUND_INVALID_INDEX,
-} from './utils/is-valid-card';
-import { getRepeatedCard } from './utils/repeated-card';
 import { validateCards } from './utils/validate-cards';
 
 export type NumberMatches = {
