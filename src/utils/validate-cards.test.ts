@@ -30,6 +30,20 @@ describe('--- validateCards() ---', () => {
     });
   });
 
+  test('Array with less elements than the specified returns error object for elements quantity', () => {
+    const options = { minimum: 4 };
+
+    expect(
+      validateCards(
+        [validCard, { number: '6', suit: 'D' }, { number: '8', suit: 'H' }],
+        options
+      )
+    ).toEqual({
+      ok: false,
+      error: ERROR_MESSAGE.QuantityCards(3, options),
+    });
+  });
+
   test('If there is only an invalid card returns error object for elements quantity', () => {
     expect(validateCards([invalidCard])).toEqual({
       ok: false,
