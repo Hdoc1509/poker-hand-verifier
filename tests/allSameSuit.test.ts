@@ -30,9 +30,7 @@ describe('--- allSameSuit() ---', () => {
   });
 
   test('Empty Array as argument throws an Error', () => {
-    expect(() => allSameSuit([])).toThrow(
-      ERROR_MESSAGE.QuantityCards(0)
-    );
+    expect(() => allSameSuit([])).toThrow(ERROR_MESSAGE.QuantityCards(0));
   });
 
   test('Array with invalid cards throws an Error', () => {
@@ -42,9 +40,7 @@ describe('--- allSameSuit() ---', () => {
   });
 
   test('Array that have less than 2 cards throws an Error', () => {
-    expect(() => allSameSuit(oneCard)).toThrow(
-      ERROR_MESSAGE.QuantityCards(1)
-    );
+    expect(() => allSameSuit(oneCard)).toThrow(ERROR_MESSAGE.QuantityCards(1));
   });
 
   test('Array with repeated cards throws an Error', () => {
