@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Card } from '../src';
 import { findPair } from '../src/pair';
 import { ERROR_MESSAGE } from '../src/utils/validate-cards';
