@@ -42,7 +42,7 @@ export const numberMatches = (
       'Expected 2 arguments, but received 1. Missing "numberToCheck" argument.'
     );
 
-  const validation = validateCards(cards);
+  const validation = validateCards(cards, { minimum: 5 });
 
   if (!validation.ok)
     throw new Error(`Invalid Array of cards. ${validation.error}`);
