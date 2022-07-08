@@ -30,14 +30,14 @@ describe('--- numberMatches() ---', () => {
 
   test('Only one argument throws an Error', () => {
     expect(() => numberMatches(sameNumber)).toThrow(
-      'Expected 2 arguments, but received 1.'
+      'Expected 2 arguments, but received 1. Missing "numberToCheck" argument.'
     );
   });
 
   test('First argument is not an Array throws an Error', () => {
     expect(() =>
       numberMatches('invalid' as unknown as Array<Card>, '1')
-    ).toThrow(`Invalid first argument. ${ERROR_MESSAGE.NotArray}`);
+    ).toThrow(`Invalid Array of cards. ${ERROR_MESSAGE.NotArray}`);
   });
 
   test('First argument is not a valid Array of cards throws an specific Error', () => {
