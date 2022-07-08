@@ -41,17 +41,29 @@ describe('--- numberMatches() ---', () => {
   });
 
   test('First argument is not a valid Array of cards throws an specific Error', () => {
+    const minimum = 5;
+
     expect(() => numberMatches([], '4')).toThrow(
-      `Invalid Array of cards. ${ERROR_MESSAGE.QuantityCards(0)}`
+      `Invalid Array of cards. ${ERROR_MESSAGE.QuantityCards(0, { minimum })}`
     );
 
     expect(() =>
-      numberMatches([...sameNumber, invalidCard] as Array<Card>, '4')
+      numberMatches(
+        [...sameNumber, invalidCard, { number: 'K', suit: 'C' }] as Array<Card>,
+        '4'
+      )
     ).toThrow(`Invalid Array of cards. ${ERROR_MESSAGE.InvalidCard(3)}`);
 
-    expect(() => numberMatches(repeatedCards, '2')).toThrow(
-      `Invalid Array of cards. ${ERROR_MESSAGE.RepeatedCard('3D')}`
-    );
+    expect(() =>
+      numberMatches(
+        [
+          ...repeatedCards,
+          { number: 'Q', suit: 'H' },
+          { number: 'A', suit: 'S' },
+        ],
+        '2'
+      )
+    ).toThrow(`Invalid Array of cards. ${ERROR_MESSAGE.RepeatedCard('3D')}`);
   });
 
   test('Returns natches and not matches correctly', () => {
