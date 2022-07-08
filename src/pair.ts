@@ -4,6 +4,7 @@ import {
   numberMatches,
 } from './other-checkings';
 import { Card } from './index';
+import { validateCards } from './utils/validate-cards';
 
 /** Check if hand is an specific PAIR */
 const isPair = (cards: Array<Card>, { number }: Card): boolean => {
@@ -21,8 +22,16 @@ export const isAnyPair = (cards: Array<Card>): boolean =>
   cards.some((card) => isPair(cards, card));
 
 /** Searchs for any possible PAIR and returns its card number */
-export const findPair = (cards: Array<Card>): string =>
-  cards.find((card) => isPair(cards, card)).number;
+export const findPair = (cards: Array<Card> = []): string => {
+  if (cards.length === 0)
+    throw new Error('Expected 1 argument, but received 0.');
+
+  const validation = validateCards(cards, { minimum: 5 });
+
+  if (!validation.ok) throw new Error(validation.error);
+
+  return cards.find((card) => isPair(cards, card))?.number;
+};
 
 /** Returns all pairs in the hand */
 export const getPairs = (cards: Array<Card>): Set<string> => {
