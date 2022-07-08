@@ -31,7 +31,7 @@ describe('--- findPair() ---', () => {
         invalidCard,
         { number: 'A', suit: 'S' },
       ] as Array<Card>)
-    ).toThrow(ERROR_MESSAGE.InvalidCard(4));
+    ).toThrow(ERROR_MESSAGE.InvalidCard(3));
 
     expect(() =>
       findPair([
