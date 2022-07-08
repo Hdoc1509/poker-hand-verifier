@@ -6,7 +6,7 @@ import {
 import { Card } from './index';
 
 /** Check if hand is an specific PAIR */
-export const isPair = (cards: Array<Card>, { number }: Card): boolean => {
+const isPair = (cards: Array<Card>, { number }: Card): boolean => {
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return (
