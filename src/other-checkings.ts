@@ -31,12 +31,21 @@ export const allSameSuit = (cards: Array<Card> = []): boolean => {
 
 /** Returns matches and not maches of a given card number */
 export const numberMatches = (
-  cards: Array<Card>,
-  numberToCheck: string
+  cards: Array<Card> = [],
+  numberToCheck: string = null
 ): NumberMatches => {
+  if (cards.length === 0 && numberToCheck === null)
+    throw new Error('Expected 2 arguments, but received 0.');
+
+  if (numberToCheck === null)
+    throw new Error(
+      'Expected 2 arguments, but received 1. Missing "numberToCheck" argument.'
+    );
+
   const validation = validateCards(cards);
 
-  if (!validation.ok) throw new Error(validation.error);
+  if (!validation.ok)
+    throw new Error(`Invalid Array of cards. ${validation.error}`);
 
   if (typeof numberToCheck !== 'string')
     throw new TypeError('Argument "numberToCheck" must be an String');
