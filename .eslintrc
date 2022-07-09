@@ -50,7 +50,7 @@
     "object-shorthand": "error",
     "prefer-const": "error",
     "quote-props": ["error", "as-needed"],
-    "quotes": ["error", "single"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "semi": ["error", "always"],
     "space-before-function-paren": [
       "error",
