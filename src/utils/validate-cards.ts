@@ -2,15 +2,15 @@ import { getInvalidCardIndex, NOT_FOUND_INVALID_INDEX } from './is-valid-card';
 import { getRepeatedCard } from './repeated-card';
 
 export const ERROR_MESSAGE = Object.freeze({
-  NotArray: 'Expected an Array as argument',
+  NotArray: 'Expected an Array as argument.',
   QuantityCards: (received: number, { minimum = 2 } = {}) =>
     `Expected an Array of ${
       minimum === 5 ? '5 cards' : `minimum ${minimum} and maximum 5 cards`
-    }. Received ${received} instead`,
+    }. Received ${received} instead.`,
   InvalidCard: (index: number) =>
-    `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${index}`,
+    `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${index}.`,
   RepeatedCard: (card: string) =>
-    `Array can not have repeated cards. Found repeated card: ${card}`,
+    `Array can not have repeated cards. Found repeated card: ${card}.`,
 });
 
 type ValidatedData = {
