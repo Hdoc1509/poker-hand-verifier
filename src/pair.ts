@@ -23,9 +23,6 @@ export const isAnyPair = (cards: Array<Card>): boolean =>
 
 /** Searchs for any possible PAIR and returns its card number */
 export const findPair = (cards: Array<Card> = []): string => {
-  if (cards.length === 0)
-    throw new Error('Expected 1 argument, but received 0.');
-
   const validation = validateCards(cards, { minimum: 5 });
 
   if (!validation.ok) throw new Error(validation.error);
