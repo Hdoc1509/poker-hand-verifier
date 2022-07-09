@@ -37,11 +37,7 @@ export const getPairs = (cards: Array<Card> = []): Set<string> => {
   if (!validation.ok) throw new Error(validation.error);
 
   const aux = cards
-    .filter(({ number }) => {
-      const { matches } = numberMatches(cards, number);
-
-      return matches.length === 2;
-    })
+    .filter(({ number }) => numberMatches(cards, number).matches.length === 2)
     .map(({ number }) => number);
 
   return new Set(aux);
