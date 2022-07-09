@@ -20,17 +20,17 @@ const validDifferentCards = [
 ];
 
 describe('--- allDifferentNumbers() ---', () => {
-  test('No argument trhows an Error', () => {
+  test('No argument throws an Error', () => {
     expect(() => allDifferentNumbers()).toThrow(ERROR_MESSAGE.QuantityCards(0));
   });
 
-  test('Arguments is not an Array throws an Error', () => {
+  test('Argument is not an Array throws an Error', () => {
     expect(() =>
       allDifferentNumbers('not an array' as unknown as Array<Card>)
     ).toThrow(ERROR_MESSAGE.NotArray);
   });
 
-  test('Empty array as argument throws an Error', () => {
+  test('Empty Array as argument throws an Error', () => {
     expect(() => allDifferentNumbers([])).toThrow(
       ERROR_MESSAGE.QuantityCards(0)
     );
