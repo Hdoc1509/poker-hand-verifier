@@ -7,7 +7,7 @@ import { Card } from './index';
 import { validateCards } from './utils/validate-cards';
 
 /** Check if hand is an specific PAIR */
-export const isPair = (cards: Array<Card>, { number }: Card): boolean => {
+export const isPair = (cards: Array<Card>, number: string): boolean => {
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return (
@@ -19,7 +19,7 @@ export const isPair = (cards: Array<Card>, { number }: Card): boolean => {
 
 /** Check if hand is any possible PAIR */
 export const isAnyPair = (cards: Array<Card>): boolean =>
-  cards.some((card) => isPair(cards, card));
+  cards.some(({ number }) => isPair(cards, number));
 
 /** Searchs for any possible PAIR and returns its card number */
 export const findPair = (cards: Array<Card> = []): string => {
@@ -27,7 +27,7 @@ export const findPair = (cards: Array<Card> = []): string => {
 
   if (!validation.ok) throw new Error(validation.error);
 
-  return cards.find((card) => isPair(cards, card))?.number;
+  return cards.find(({ number }) => isPair(cards, number))?.number;
 };
 
 /** Returns all pairs in the hand */
