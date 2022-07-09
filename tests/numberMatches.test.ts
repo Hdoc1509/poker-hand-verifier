@@ -66,7 +66,7 @@ describe('--- numberMatches() ---', () => {
     ).toThrow(`Invalid Array of cards. ${ERROR_MESSAGE.RepeatedCard('3D')}`);
   });
 
-  test('Returns natches and not matches correctly', () => {
+  test('Returns matches and not matches correctly', () => {
     expect(numberMatches([...sameNumber, ...otherCards], '4')).toEqual({
       matches: [...sameNumber],
       notMatches: [...otherCards],
