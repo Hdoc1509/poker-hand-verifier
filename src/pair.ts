@@ -7,7 +7,7 @@ import { Card } from './index';
 import { validateCards } from './utils/validate-cards';
 
 /** Check if hand is an specific PAIR */
-const isPair = (cards: Array<Card>, { number }: Card): boolean => {
+export const isPair = (cards: Array<Card>, { number }: Card): boolean => {
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return (
