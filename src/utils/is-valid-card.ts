@@ -4,7 +4,7 @@ export const VALID_NUMBER = /^A|[2-9]|10|J|Q|K$/;
 export const NOT_FOUND_INVALID_INDEX = -1;
 
 export const isValidCard = (card: any): boolean => {
-  if (card?.number == null || card?.suit == null) return false;
+  if (card?.number === undefined || card?.suit === undefined) return false;
 
   const { number, suit } = card;
 
