@@ -31,7 +31,11 @@ export const findPair = (cards: Array<Card> = []): string => {
 };
 
 /** Returns all pairs in the hand */
-export const getPairs = (cards: Array<Card>): Set<string> => {
+export const getPairs = (cards: Array<Card> = []): Set<string> => {
+  const validation = validateCards(cards, { minimum: 5 });
+
+  if (!validation.ok) throw new Error(validation.error);
+
   const aux = cards
     .filter(({ number }) => {
       const { matches } = numberMatches(cards, number);
