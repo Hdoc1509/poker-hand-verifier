@@ -40,7 +40,7 @@ export const getPairs = (cards: Array<Card> = []): Set<string> => {
     .filter(({ number }) => {
       const { matches } = numberMatches(cards, number);
 
-      return matches.length === 2 && !allSameSuit(matches);
+      return matches.length === 2;
     })
     .map(({ number }) => number);
 
