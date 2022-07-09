@@ -12,7 +12,9 @@ const invalidCard = { myNum: 'three' };
 
 describe('--- findPair() ---', () => {
   test('No argument throws an Error', () => {
-    expect(() => findPair()).toThrow('Expected 1 argument, but received 0.');
+    expect(() => findPair()).toThrow(
+      ERROR_MESSAGE.QuantityCards(0, { minimum: 5 })
+    );
   });
 
   test('Argument is not a valid Array of cards throws an specific Error', () => {
