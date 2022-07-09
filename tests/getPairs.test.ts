@@ -43,7 +43,7 @@ describe('--- getPairs() ---', () => {
     ).toThrow(ERROR_MESSAGE.RepeatedCard('6D'));
   });
 
-  test('If there are no PAIR\'s returns an empty Set', () => {
+  test("If there are no PAIR's returns an empty Set", () => {
     expect(
       getPairs([
         ...validCards,
@@ -53,7 +53,7 @@ describe('--- getPairs() ---', () => {
     ).toEqual(new Set());
   });
 
-  test('If there are PAIR\'s returns a Set with its numbers correctly', () => {
+  test("If there are PAIR's returns a Set with its numbers correctly", () => {
     expect(
       getPairs([
         ...validCards,
