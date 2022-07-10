@@ -60,6 +60,22 @@ describe('--- isPair() ---', () => {
     ).toThrow(`Invalid Array of cards. ${ERROR_MESSAGE.RepeatedCard('5C')}`);
   });
 
+  test('"numberToCheckPair" argument is not a valid number throws an Error', () => {
+    const cards = [
+      ...validCards,
+      { number: 'K', suit: 'D' },
+      { number: '8', suit: 'S' },
+    ];
+
+    expect(() => isPair(cards, 2 as unknown as string)).toThrow(
+      'Argument "numberToCheckPair" must be an String'
+    );
+
+    expect(() => isPair(cards, '1')).toThrow(
+      'Argument "numberToCheckPair" is not a valid number'
+    );
+  });
+
   test('Hand is not a PAIR of a specific number returns false', () => {
     expect(
       isPair(
