@@ -32,21 +32,21 @@ export const allSameSuit = (cards: Array<Card> = []): boolean => {
 /** Returns matches and not maches of a given card number */
 export const numberMatches = (
   cards: Array<Card> = [],
-  numberToCheck: string = null
+  numberToCheckMatches: string = null
 ): NumberMatches => {
   const validation = validateCards(cards, { minimum: 5 });
 
   if (!validation.ok)
     throw new Error(`Invalid Array of cards. ${validation.error}`);
 
-  if (typeof numberToCheck !== 'string')
-    throw new TypeError('Argument "numberToCheck" must be an String');
+  if (typeof numberToCheckMatches !== 'string')
+    throw new TypeError('Argument "numberToCheckMatches" must be an String');
 
-  if (numberToCheck.match(VALID_NUMBER) === null)
-    throw new Error('Argument "numberToCheck" is not a valid number');
+  if (numberToCheckMatches.match(VALID_NUMBER) === null)
+    throw new Error('Argument "numberToCheckMatches" is not a valid number');
 
   return {
-    matches: cards.filter(({ number }) => number === numberToCheck),
-    notMatches: cards.filter(({ number }) => number !== numberToCheck),
+    matches: cards.filter(({ number }) => number === numberToCheckMatches),
+    notMatches: cards.filter(({ number }) => number !== numberToCheckMatches),
   };
 };
