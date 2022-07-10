@@ -30,7 +30,7 @@ describe('--- isPair() ---', () => {
         { number: '8', suit: 'D' },
         { number: '9', suit: 'H' },
       ])
-    ).toThrow('Argument "number" must be an String');
+    ).toThrow('Argument "numberToCheckPair" must be an String');
   });
 
   test('First argument is not a valid Array of cards throws an specific Error', () => {
