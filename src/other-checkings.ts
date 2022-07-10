@@ -34,14 +34,6 @@ export const numberMatches = (
   cards: Array<Card> = [],
   numberToCheck: string = null
 ): NumberMatches => {
-  if (cards.length === 0 && numberToCheck === null)
-    throw new Error('Expected 2 arguments, but received 0.');
-
-  if (numberToCheck === null)
-    throw new Error(
-      'Expected 2 arguments, but received 1. Missing "numberToCheck" argument.'
-    );
-
   const validation = validateCards(cards, { minimum: 5 });
 
   if (!validation.ok)
