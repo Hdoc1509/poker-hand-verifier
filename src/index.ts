@@ -26,85 +26,103 @@ export const verificateHand = (cards: Array<Card>): HandData => {
 
   if (!validation.ok) throw new Error(validation.error);
 
-  const hand: HandData = {
-    cards: cards.map(({ number, suit }) => `${number}${suit}`),
-    description: '',
-    type: '',
-  };
+  const stringCards = cards.map(({ number, suit }) => `${number}${suit}`);
+
+  // HIGH CARD
+  if (isHighCard(cards))
+    return {
+      cards: stringCards,
+      description: 'High Card (A)',
+      type: 'high-card',
+    };
 
   // PAIR
   if (isAnyPair(cards)) {
     const number = findPair(cards);
 
-    hand.description = `Pair (${number})`;
-    hand.type = 'pair';
+    return {
+      cards: stringCards,
+      description: `Pair (${number})`,
+      type: 'pair',
+    };
   }
 
   // TWO PAIR
-  else if (isAnyTwoPair(cards)) {
+  if (isAnyTwoPair(cards)) {
     const [pair1, pair2] = findTwoPair(cards);
 
-    hand.description = `Two Pair: (${pair1} & ${pair2})`;
-    hand.type = 'two-pair';
+    return {
+      cards: stringCards,
+      description: `Two Pair: (${pair1} & ${pair2})`,
+      type: 'two-pair',
+    };
   }
 
   // THREE OF A KIND
-  else if (isAnyThreeOfKind(cards)) {
+  if (isAnyThreeOfKind(cards)) {
     const number = findThreeOfKind(cards);
 
-    hand.description = `Three of a Kind (${number})`;
-    hand.type = 'three-of-kind';
+    return {
+      cards: stringCards,
+      description: `Three of a Kind (${number})`,
+      type: 'three-of-kind',
+    };
   }
 
   // STRAIGHTS
-  else if (isAnyStraight(cards)) {
+  if (isAnyStraight(cards)) {
     const straight = findStraight(cards);
     const parsedStraight = straight.replace('-', ' - ');
     const flushSuit = cards[0].suit;
     const areSameSuit = allSameSuit(cards);
 
-    if (straight === '10-A') {
-      hand.description = areSameSuit
-        ? `Royal Flush (${flushSuit}): ${parsedStraight}`
-        : `Straight: ${parsedStraight}`;
-      hand.type = areSameSuit ? 'royal-flush' : 'straight';
-    } else {
-      hand.description = areSameSuit
+    if (straight === '10-A')
+      return {
+        cards: stringCards,
+        description: areSameSuit
+          ? `Royal Flush (${flushSuit}): ${parsedStraight}`
+          : `Straight: ${parsedStraight}`,
+        type: areSameSuit ? 'royal-flush' : 'straight',
+      };
+
+    return {
+      cards: stringCards,
+      description: areSameSuit
         ? `Straight Flush (${flushSuit}): ${parsedStraight}`
-        : `Straight: ${parsedStraight}`;
-      hand.type = areSameSuit ? 'straight-flush' : 'straight';
-    }
+        : `Straight: ${parsedStraight}`,
+      type: areSameSuit ? 'straight-flush' : 'straight',
+    };
   }
 
   // FLUSH
-  else if (isFlush(cards)) {
-    hand.description = `Flush (${cards[0].suit})`;
-    hand.type = 'flush';
-  }
+  if (isFlush(cards))
+    return {
+      cards: stringCards,
+      description: `Flush (${cards[0].suit})`,
+      type: 'flush',
+    };
 
   // FULL HOUSE
-  else if (isAnyFullHouse(cards)) {
+  if (isAnyFullHouse(cards)) {
     const { pair, threeOfKind } = findFullHouse(cards);
 
-    hand.description = `Full House (Pair of ${pair} & Three of Kind ${threeOfKind})`;
-    hand.type = 'full-house';
+    return {
+      cards: stringCards,
+      description: `Full House (Pair of ${pair} & Three of Kind ${threeOfKind})`,
+      type: 'full-house',
+    };
   }
 
   // FOUR OF A KIND
-  else if (isAnyFourOfKind(cards)) {
+  if (isAnyFourOfKind(cards)) {
     const number = findFourOfKind(cards);
 
-    hand.description = `Four of a Kind (${number})`;
-    hand.type = 'four-of-kind';
+    return {
+      cards: stringCards,
+      description: `Four of a Kind (${number})`,
+      type: 'four-of-kind',
+    };
   }
 
-  // HIGH CARD
-  else {
-    const thereHighCard = isHighCard(cards);
-
-    hand.description = thereHighCard ? 'High Card (A)' : 'Nothing';
-    hand.type = thereHighCard ? 'high-card' : 'nothing';
-  }
-
-  return hand;
+  return { cards: stringCards, description: 'Nothing', type: 'nothing' };
 };
