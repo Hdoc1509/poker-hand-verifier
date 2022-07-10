@@ -32,7 +32,7 @@ describe('--- numberMatches() ---', () => {
 
   test('Only one argument throws an Error', () => {
     expect(() => numberMatches([...sameNumber, ...otherCards])).toThrow(
-      'Argument "numberToCheck" must be an String'
+      'Argument "numberToCheckMatches" must be an String'
     );
   });
 
@@ -64,6 +64,18 @@ describe('--- numberMatches() ---', () => {
         '2'
       )
     ).toThrow(`Invalid Array of cards. ${ERROR_MESSAGE.RepeatedCard('3D')}`);
+  });
+
+  test('Argument "numberToCheckMatches" is not a valid number throws an Error', () => {
+    const cards = [...sameNumber, ...otherCards];
+
+    expect(() => numberMatches(cards, 4 as unknown as string)).toThrow(
+      'Argument "numberToCheckMatches" must be an String'
+    );
+
+    expect(() => numberMatches(cards, 'four')).toThrow(
+      'Argument "numberToCheckMatches" is not a valid number'
+    );
   });
 
   test('Returns matches and not matches correctly', () => {
