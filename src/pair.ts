@@ -14,10 +14,10 @@ export const isPair = (
     throw new Error(`Invalid Array of cards. ${validation.error}`);
 
   if (typeof numberToCheckPair !== 'string')
-    throw new Error('Argument "numberToCheckPair" must be an String');
+    throw new TypeError('Argument "numberToCheckPair" must be an String');
 
   if (numberToCheckPair.match(VALID_NUMBER) === null)
-    throw new TypeError('Argument "numberToCheckPair" is not a valid number');
+    throw new Error('Argument "numberToCheckPair" is not a valid number');
 
   const { matches, notMatches: restNumbers } = numberMatches(
     cards,
