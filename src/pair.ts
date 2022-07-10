@@ -28,11 +28,7 @@ export const isPair = (
     numberToCheckPair
   );
 
-  return (
-    matches.length === 2 &&
-    allDifferentNumbers(restNumbers) &&
-    !allSameSuit(matches)
-  );
+  return matches.length === 2 && allDifferentNumbers(restNumbers);
 };
 
 /** Check if hand is any possible PAIR */
