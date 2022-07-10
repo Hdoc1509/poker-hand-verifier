@@ -22,15 +22,17 @@ const otherCards = [
 const invalidCard = { number: '12', other: 'F' };
 
 describe('--- numberMatches() ---', () => {
+  const minimum = 5;
+
   test('No argument throws an Error', () => {
     expect(() => numberMatches()).toThrow(
-      'Expected 2 arguments, but received 0.'
+      `Invalid Array of cards. ${ERROR_MESSAGE.QuantityCards(0, { minimum })}`
     );
   });
 
   test('Only one argument throws an Error', () => {
-    expect(() => numberMatches(sameNumber)).toThrow(
-      'Expected 2 arguments, but received 1. Missing "numberToCheck" argument.'
+    expect(() => numberMatches([...sameNumber, ...otherCards])).toThrow(
+      'Argument "numberToCheck" must be an String'
     );
   });
 
@@ -41,8 +43,6 @@ describe('--- numberMatches() ---', () => {
   });
 
   test('First argument is not a valid Array of cards throws an specific Error', () => {
-    const minimum = 5;
-
     expect(() => numberMatches([], '4')).toThrow(
       `Invalid Array of cards. ${ERROR_MESSAGE.QuantityCards(0, { minimum })}`
     );
