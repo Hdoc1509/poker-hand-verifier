@@ -7,6 +7,7 @@ import { isFlush } from './flush';
 import { isAnyFullHouse, findFullHouse } from './full-house';
 import { isAnyFourOfKind, findFourOfKind } from './four-of-kind';
 import { isHighCard } from './high-card';
+import { validateCards } from './utils/validate-cards';
 
 export type Card = {
   number: string;
@@ -21,10 +22,9 @@ export type HandData = {
 
 /** Verificate an specific hand and returns its data */
 export const verificateHand = (cards: Array<Card>): HandData => {
-  if (!Array.isArray(cards))
-    throw new TypeError('Expected an array as argument');
-  if (cards.length !== 5)
-    throw new Error('Array of cards must have 5 elements');
+  const validation = validateCards(cards, { minimum: 5 });
+
+  if (!validation.ok) throw new Error(validation.error);
 
   const hand: HandData = {
     cards: cards.map(({ number, suit }) => `${number}${suit}`),
