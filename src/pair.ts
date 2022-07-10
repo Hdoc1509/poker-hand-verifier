@@ -10,20 +10,23 @@ import { VALID_NUMBER } from './utils/is-valid-card';
 /** Check if hand is an specific PAIR */
 export const isPair = (
   cards: Array<Card> = [],
-  number: string = null
+  numberToCheckPair: string = null
 ): boolean => {
   const validation = validateCards(cards, { minimum: 5 });
 
   if (!validation.ok)
     throw new Error(`Invalid Array of cards. ${validation.error}`);
 
-  if (typeof number !== 'string')
-    throw new Error('Argument "number" must be an String');
+  if (typeof numberToCheckPair !== 'string')
+    throw new Error('Argument "numberToCheckPair" must be an String');
 
-  if (number.match(VALID_NUMBER) === null)
-    throw new TypeError('Argument "number" is not a valid number');
+  if (numberToCheckPair.match(VALID_NUMBER) === null)
+    throw new TypeError('Argument "numberToCheckPair" is not a valid number');
 
-  const { matches, notMatches: restNumbers } = numberMatches(cards, number);
+  const { matches, notMatches: restNumbers } = numberMatches(
+    cards,
+    numberToCheckPair
+  );
 
   return (
     matches.length === 2 &&
