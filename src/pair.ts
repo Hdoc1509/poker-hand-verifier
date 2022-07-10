@@ -5,6 +5,7 @@ import {
 } from './other-checkings';
 import { Card } from './index';
 import { validateCards } from './utils/validate-cards';
+import { VALID_NUMBER } from './utils/is-valid-card';
 
 /** Check if hand is an specific PAIR */
 export const isPair = (
@@ -18,6 +19,9 @@ export const isPair = (
 
   if (typeof number !== 'string')
     throw new Error('Argument "number" must be an String');
+
+  if (number.match(VALID_NUMBER) === null)
+    throw new TypeError('Argument "number" is not a valid number');
 
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
