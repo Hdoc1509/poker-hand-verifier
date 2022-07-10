@@ -7,7 +7,18 @@ import { Card } from './index';
 import { validateCards } from './utils/validate-cards';
 
 /** Check if hand is an specific PAIR */
-export const isPair = (cards: Array<Card>, number: string): boolean => {
+export const isPair = (
+  cards: Array<Card> = [],
+  number: string = null
+): boolean => {
+  const validation = validateCards(cards, { minimum: 5 });
+
+  if (!validation.ok)
+    throw new Error(`Invalid Array of cards. ${validation.error}`);
+
+  if (typeof number !== 'string')
+    throw new Error('Argument "number" must be an String');
+
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return (
