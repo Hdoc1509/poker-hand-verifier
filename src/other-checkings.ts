@@ -17,7 +17,7 @@ export const allDifferentNumbers = (cards: Array<Card>): boolean => {
 };
 
 /** Check if all cards has the same suit */
-export const allSameSuit = (cards: Array<Card> = []): boolean => {
+export const allSameSuit = (cards: Array<Card>): boolean => {
   const validation = validateCards(cards, { minimum: 2 });
 
   if (!validation.ok) throw new Error(validation.error);
