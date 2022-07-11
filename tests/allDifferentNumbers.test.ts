@@ -1,6 +1,7 @@
 // @ts-ignore
 import { toBeFalse, toBeTrue } from 'jest-extended';
 import { allDifferentNumbers } from '../src/other-checkings';
+import { ERROR_MESSAGE } from '../src/utils/validate-cards';
 
 expect.extend({ toBeFalse, toBeTrue });
 
@@ -18,7 +19,7 @@ const validDifferentCards = [
 describe('--- allDifferentNumbers() ---', () => {
   test('Array that have less than 2 cards throws an Error', () => {
     expect(() => allDifferentNumbers(oneCard)).toThrow(
-      'Expected an Array of minimum 2 cards'
+      ERROR_MESSAGE.QuantityCards(1, { minimum: 2 })
     );
   });
 
