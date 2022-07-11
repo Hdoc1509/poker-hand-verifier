@@ -1,6 +1,6 @@
 import { Card } from './index';
 import { VALID_NUMBER } from './utils/is-valid-card';
-import { validateCards } from './utils/validate-cards';
+import { ERROR_MESSAGE, validateCards } from './utils/validate-cards';
 
 export type NumberMatches = {
   matches: Array<Card>;
@@ -9,7 +9,11 @@ export type NumberMatches = {
 
 /** Check if all cards has different numbers */
 export const allDifferentNumbers = (cards: Array<Card>): boolean => {
-  if (cards.length < 2) throw new Error('Expected an Array of minimum 2 cards');
+  const received = cards.length;
+  const minimum = 2;
+
+  if (received < minimum)
+    throw new Error(ERROR_MESSAGE.QuantityCards(received, { minimum }));
 
   const numbers = new Set(cards.map(({ number }) => number));
 
