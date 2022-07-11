@@ -9,9 +9,7 @@ export type NumberMatches = {
 
 /** Check if all cards has different numbers */
 export const allDifferentNumbers = (cards: Array<Card>): boolean => {
-  const validation = validateCards(cards, { minimum: 2 });
-
-  if (!validation.ok) throw new Error(validation.error);
+  if (cards.length < 2) throw new Error('Expected an Array of minimum 2 cards');
 
   const numbers = new Set(cards.map(({ number }) => number));
 
