@@ -1,14 +1,10 @@
 // @ts-ignore
 import { toBeFalse, toBeTrue } from 'jest-extended';
-import { Card } from '../src';
 import { allDifferentNumbers } from '../src/other-checkings';
-import { ERROR_MESSAGE } from '../src/utils/validate-cards';
 
 expect.extend({ toBeFalse, toBeTrue });
 
-const invalidCards = [{ invalidProp: 'anything', suit: 'H' }, {}];
 const oneCard = [{ number: '3', suit: 'C' }];
-const sameCard = [...oneCard, ...oneCard];
 const validSameNumber = [
   { number: '4', suit: 'D' },
   { number: '4', suit: 'S' },
@@ -20,37 +16,9 @@ const validDifferentCards = [
 ];
 
 describe('--- allDifferentNumbers() ---', () => {
-  test('No argument throws an Error', () => {
-    expect(() => allDifferentNumbers()).toThrow(ERROR_MESSAGE.QuantityCards(0));
-  });
-
-  test('Argument is not an Array throws an Error', () => {
-    expect(() =>
-      allDifferentNumbers('not an array' as unknown as Array<Card>)
-    ).toThrow(ERROR_MESSAGE.NotArray);
-  });
-
-  test('Empty Array as argument throws an Error', () => {
-    expect(() => allDifferentNumbers([])).toThrow(
-      ERROR_MESSAGE.QuantityCards(0)
-    );
-  });
-
-  test('Array with invalid cards throws an Error', () => {
-    expect(() => allDifferentNumbers(invalidCards as Array<Card>)).toThrow(
-      ERROR_MESSAGE.InvalidCard(0)
-    );
-  });
-
   test('Array that have less than 2 cards throws an Error', () => {
     expect(() => allDifferentNumbers(oneCard)).toThrow(
-      ERROR_MESSAGE.QuantityCards(1)
-    );
-  });
-
-  test('Array with repeated cards throws an Error', () => {
-    expect(() => allDifferentNumbers(sameCard)).toThrow(
-      ERROR_MESSAGE.RepeatedCard('3C')
+      'Expected an Array of minimum 2 cards'
     );
   });
 
