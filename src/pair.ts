@@ -1,6 +1,5 @@
 import { allDifferentNumbers, numberMatches } from './other-checkings';
 import { Card } from './index';
-import { validateCards } from './utils/validate-cards';
 import { VALID_NUMBER } from './utils/is-valid-card';
 
 /** Check if hand is an specific PAIR */
