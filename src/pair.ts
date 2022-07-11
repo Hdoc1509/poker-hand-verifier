@@ -8,14 +8,6 @@ export const isPair = (
   cards: Array<Card>,
   numberToCheckPair: string
 ): boolean => {
-  const validation = validateCards(cards, { minimum: 5 });
-
-  if (!validation.ok)
-    throw new Error(`Invalid Array of cards. ${validation.error}`);
-
-  if (typeof numberToCheckPair !== 'string')
-    throw new TypeError('Argument "numberToCheckPair" must be an String');
-
   if (numberToCheckPair.match(VALID_NUMBER) === null)
     throw new Error('Argument "numberToCheckPair" is not a valid number');
 
