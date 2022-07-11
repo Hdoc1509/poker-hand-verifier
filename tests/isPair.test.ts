@@ -24,20 +24,22 @@ describe('--- isPair() ---', () => {
   });
 
   test('Hand is not a PAIR of a specific number returns false', () => {
-    expect(
-      isPair(
-        [...validCards, { number: 'K', suit: 'D' }, { number: '8', suit: 'S' }],
-        'Q'
-      )
-    ).toBeFalse();
+    const cards = [
+      ...validCards,
+      { number: 'K', suit: 'D' },
+      { number: '8', suit: 'S' },
+    ];
+
+    expect(isPair(cards, 'Q')).toBeFalse();
   });
 
   test('Hand is PAIR of a specific number returns true', () => {
-    expect(
-      isPair(
-        [...validCards, { number: '5', suit: 'D' }, { number: 'Q', suit: 'D' }],
-        '5'
-      )
-    ).toBeTrue();
+    const cards = [
+      ...validCards,
+      { number: '5', suit: 'D' },
+      { number: 'Q', suit: 'D' },
+    ];
+
+    expect(isPair(cards, '5')).toBeTrue();
   });
 });
