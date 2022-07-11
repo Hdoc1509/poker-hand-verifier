@@ -5,8 +5,8 @@ import { VALID_NUMBER } from './utils/is-valid-card';
 
 /** Check if hand is an specific PAIR */
 export const isPair = (
-  cards: Array<Card> = [],
-  numberToCheckPair: string = null
+  cards: Array<Card>,
+  numberToCheckPair: string
 ): boolean => {
   const validation = validateCards(cards, { minimum: 5 });
 
