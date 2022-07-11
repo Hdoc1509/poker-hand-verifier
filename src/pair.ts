@@ -24,7 +24,7 @@ export const isAnyPair = (cards: Array<Card>): boolean =>
   cards.some(({ number }) => isPair(cards, number));
 
 /** Searchs for any possible PAIR and returns its card number */
-export const findPair = (cards: Array<Card> = []): string => {
+export const findPair = (cards: Array<Card>): string => {
   const validation = validateCards(cards, { minimum: 5 });
 
   if (!validation.ok) throw new Error(validation.error);
