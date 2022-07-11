@@ -1,6 +1,4 @@
-import { Card } from '../src';
 import { findPair } from '../src/pair';
-import { ERROR_MESSAGE } from '../src/utils/validate-cards';
 
 const validCards = [
   { number: '5', suit: 'C' },
@@ -8,41 +6,7 @@ const validCards = [
   { number: 'K', suit: 'H' },
 ];
 
-const invalidCard = { myNum: 'three' };
-
 describe('--- findPair() ---', () => {
-  test('No argument throws an Error', () => {
-    expect(() => findPair()).toThrow(
-      ERROR_MESSAGE.QuantityCards(0, { minimum: 5 })
-    );
-  });
-
-  test('Argument is not a valid Array of cards throws an specific Error', () => {
-    expect(() => findPair('not array' as unknown as Array<Card>)).toThrow(
-      ERROR_MESSAGE.NotArray
-    );
-
-    expect(() => findPair(validCards)).toThrow(
-      ERROR_MESSAGE.QuantityCards(3, { minimum: 5 })
-    );
-
-    expect(() =>
-      findPair([
-        ...validCards,
-        invalidCard,
-        { number: 'A', suit: 'S' },
-      ] as Array<Card>)
-    ).toThrow(ERROR_MESSAGE.InvalidCard(3));
-
-    expect(() =>
-      findPair([
-        ...validCards,
-        { number: 'K', suit: 'H' },
-        { number: '10', suit: 'S' },
-      ])
-    ).toThrow(ERROR_MESSAGE.RepeatedCard('KH'));
-  });
-
   test('If there is no PAIR returns undefined', () => {
     expect(
       findPair([
