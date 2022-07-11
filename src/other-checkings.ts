@@ -22,7 +22,11 @@ export const allDifferentNumbers = (cards: Array<Card>): boolean => {
 
 /** Check if all cards has the same suit */
 export const allSameSuit = (cards: Array<Card>): boolean => {
-  if (cards.length < 2) throw new Error('Expected an Array of minimum 2 cards');
+  const received = cards.length;
+  const minimum = 2;
+
+  if (received < minimum)
+    throw new Error(ERROR_MESSAGE.QuantityCards(received, { minimum }));
 
   const suits = new Set(cards.map(({ suit }) => suit));
 
