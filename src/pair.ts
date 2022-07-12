@@ -3,17 +3,11 @@ import { Card } from './index';
 import { VALID_NUMBER } from './utils/is-valid-card';
 
 /** Check if hand is an specific PAIR */
-export const isPair = (
-  cards: Array<Card>,
-  numberToCheckPair: string
-): boolean => {
-  if (numberToCheckPair.match(VALID_NUMBER) === null)
-    throw new Error('Argument "numberToCheckPair" is not a valid number');
+export const isPair = (cards: Array<Card>, number: string): boolean => {
+  if (number.match(VALID_NUMBER) === null)
+    throw new Error('Argument "number" is not a valid number');
 
-  const { matches, notMatches: restNumbers } = numberMatches(
-    cards,
-    numberToCheckPair
-  );
+  const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return matches.length === 2 && allDifferentNumbers(restNumbers);
 };
