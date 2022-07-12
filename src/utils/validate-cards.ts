@@ -1,3 +1,4 @@
+import { Card } from '..';
 import { getInvalidCardIndex, NOT_FOUND_INVALID_INDEX } from './is-valid-card';
 import { getRepeatedCard } from './repeated-card';
 
@@ -13,14 +14,9 @@ export const ERROR_MESSAGE = Object.freeze({
     `Array can not have repeated cards. Found repeated card: ${card}.`,
 });
 
-type ValidatedData = {
-  ok: boolean;
-  error?: string;
-};
+type ValidatedData = { ok: boolean; error?: string };
 
-type options = {
-  minimum?: number;
-};
+type options = { minimum?: number };
 
 export const validateCards = (
   cards: Array<any> = [],
@@ -44,6 +40,21 @@ export const validateCards = (
 
   if (repeatedCard)
     return { ok: false, error: ERROR_MESSAGE.RepeatedCard(repeatedCard) };
+
+  return { ok: true };
+};
+
+export const validateQuantity = (
+  cards: Array<Card>,
+  minimum: number
+): ValidatedData => {
+  const received = cards.length;
+
+  if (received < minimum)
+    return {
+      ok: false,
+      error: ERROR_MESSAGE.QuantityCards(received, { minimum }),
+    };
 
   return { ok: true };
 };
