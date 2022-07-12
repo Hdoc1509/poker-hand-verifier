@@ -11,18 +11,6 @@ const validCards = [
 expect.extend({ toBeFalse, toBeTrue });
 
 describe('--- isPair() ---', () => {
-  test('"numberToCheckPair" argument is not a valid number throws an Error', () => {
-    const cards = [
-      ...validCards,
-      { number: 'K', suit: 'D' },
-      { number: '8', suit: 'S' },
-    ];
-
-    expect(() => isPair(cards, '1')).toThrow(
-      'Argument "numberToCheckPair" is not a valid number'
-    );
-  });
-
   test('Hand is not a PAIR of a specific number returns false', () => {
     const cards = [
       ...validCards,
