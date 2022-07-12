@@ -6,32 +6,31 @@ const validCards = [
   { number: 'K', suit: 'H' },
 ];
 
+const noPair = [
+  ...validCards,
+  { number: 'A', suit: 'D' },
+  { number: 'Q', suit: 'D' },
+];
+
+const pair1 = [
+  ...validCards,
+  { number: '5', suit: 'D' },
+  { number: 'J', suit: 'D' },
+];
+
+const pair2 = [
+  ...validCards,
+  { number: '8', suit: 'C' },
+  { number: '8', suit: 'H' },
+];
+
 describe('--- findPair() ---', () => {
   test('If there is no PAIR returns undefined', () => {
-    const cards = [
-      ...validCards,
-      { number: 'A', suit: 'D' },
-      { number: 'Q', suit: 'D' },
-    ];
-
-    expect(findPair(cards)).toBeUndefined();
+    expect(findPair(noPair)).toBeUndefined();
   });
 
   test('If there is a PAIR returns its card number correctly', () => {
-    const cards1 = [
-      ...validCards,
-      { number: '5', suit: 'D' },
-      { number: 'J', suit: 'D' },
-    ];
-
-    const cards2 = [
-      ...validCards,
-      { number: '8', suit: 'C' },
-      { number: '8', suit: 'H' },
-    ];
-
-    expect(findPair(cards1)).toBe('5');
-
-    expect(findPair(cards2)).toBe('8');
+    expect(findPair(pair1)).toBe('5');
+    expect(findPair(pair2)).toBe('8');
   });
 });
