@@ -6,11 +6,8 @@ import {
 import { Card } from './index';
 
 /** Check if hand is an specific THREE OF A KIND */
-export const isThreeOfKind = (
-  cards: Array<Card>,
-  numberToCheckThreeOfKind: string
-): boolean => {
-  const { matches, notMatches: restNumbers } = numberMatches(cards, numberToCheckThreeOfKind);
+export const isThreeOfKind = (cards: Array<Card>, number: string): boolean => {
+  const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return matches.length === 3 && allDifferentNumbers(restNumbers);
 };
