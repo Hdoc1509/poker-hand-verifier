@@ -1,25 +1,25 @@
 import { findPair } from '../src/pair';
 
-const validCards = [
+const cards = [
   { number: '5', suit: 'C' },
   { number: '7', suit: 'D' },
   { number: 'K', suit: 'H' },
 ];
 
 const noPair = [
-  ...validCards,
+  ...cards,
   { number: 'A', suit: 'D' },
   { number: 'Q', suit: 'D' },
 ];
 
 const pair1 = [
-  ...validCards,
+  ...cards,
   { number: '5', suit: 'D' },
   { number: 'J', suit: 'D' },
 ];
 
 const pair2 = [
-  ...validCards,
+  ...cards,
   { number: '8', suit: 'C' },
   { number: '8', suit: 'H' },
 ];
