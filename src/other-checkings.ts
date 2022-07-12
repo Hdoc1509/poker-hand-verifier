@@ -1,6 +1,6 @@
 import { Card } from './index';
 import { VALID_NUMBER } from './utils/is-valid-card';
-import { ERROR_MESSAGE, validateCards } from './utils/validate-cards';
+import { validateCards, validateQuantity } from './utils/validate-cards';
 
 export type NumberMatches = {
   matches: Array<Card>;
@@ -9,11 +9,9 @@ export type NumberMatches = {
 
 /** Check if all cards has different numbers */
 export const allDifferentNumbers = (cards: Array<Card>): boolean => {
-  const received = cards.length;
-  const minimum = 2;
+  const validation = validateQuantity(cards, 2);
 
-  if (received < minimum)
-    throw new Error(ERROR_MESSAGE.QuantityCards(received, { minimum }));
+  if (!validation.ok) throw new Error(validation.error);
 
   const numbers = new Set(cards.map(({ number }) => number));
 
@@ -22,11 +20,9 @@ export const allDifferentNumbers = (cards: Array<Card>): boolean => {
 
 /** Check if all cards has the same suit */
 export const allSameSuit = (cards: Array<Card>): boolean => {
-  const received = cards.length;
-  const minimum = 2;
+  const validation = validateQuantity(cards, 2);
 
-  if (received < minimum)
-    throw new Error(ERROR_MESSAGE.QuantityCards(received, { minimum }));
+  if (!validation.ok) throw new Error(validation.error);
 
   const suits = new Set(cards.map(({ suit }) => suit));
 
