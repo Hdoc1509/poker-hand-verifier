@@ -9,5 +9,8 @@ export const isAnyTwoPair = (cards: Array<Card>): boolean => {
 };
 
 /** Searchs for any possible TWO PAIR and returns its card numbers */
-export const findTwoPair = (cards: Array<Card>): Array<string> =>
-  Array.from(getPairs(cards));
+export const findTwoPair = (cards: Array<Card>): Array<string> => {
+  const pairs = getPairs(cards);
+
+  return pairs.size === 2 ? Array.from(pairs) : undefined;
+};
