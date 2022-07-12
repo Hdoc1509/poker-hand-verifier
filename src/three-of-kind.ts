@@ -18,7 +18,7 @@ export const isAnyThreeOfKind = (cards: Array<Card>): boolean =>
 
 /** Searchs for any possible THREE OF KIND and returns its card number */
 export const findThreeOfKind = (cards: Array<Card>): string =>
-  cards.find(({ number }) => isThreeOfKind(cards, number)).number;
+  cards.find(({ number }) => isThreeOfKind(cards, number))?.number;
 
 /** Returns the number that compose the THREE OF A KIND in the hand */
 export const getThreeOfKind = (cards: Array<Card>): Set<string> => {
