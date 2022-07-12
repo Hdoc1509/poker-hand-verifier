@@ -1,6 +1,6 @@
 import { allSameSuit } from './other-checkings';
 import { findPair } from './pair';
-import { isAnyTwoPair, findTwoPair } from './two-pair';
+import { findTwoPair } from './two-pair';
 import { isAnyThreeOfKind, findThreeOfKind } from './three-of-kind';
 import { isAnyStraight, findStraight } from './straight';
 import { isFlush } from './flush';
@@ -47,8 +47,10 @@ export const verificateHand = (cards: Array<Card>): HandData => {
     };
 
   // TWO PAIR
-  if (isAnyTwoPair(cards)) {
-    const [pair1, pair2] = findTwoPair(cards);
+  const twoPairNumbers = findTwoPair(cards);
+
+  if (twoPairNumbers !== undefined) {
+    const [pair1, pair2] = twoPairNumbers;
 
     return {
       cards: stringCards,
