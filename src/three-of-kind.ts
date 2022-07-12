@@ -4,13 +4,9 @@ import {
   numberMatches,
 } from './other-checkings';
 import { Card } from './index';
-import { VALID_NUMBER } from './utils/is-valid-card';
 
 /** Check if hand is an specific THREE OF A KIND */
 export const isThreeOfKind = (cards: Array<Card>, number: string): boolean => {
-  if (number.match(VALID_NUMBER) === null)
-    throw new Error('Argument "number" is not a valid number');
-
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
 
   return matches.length === 3 && allDifferentNumbers(restNumbers);
