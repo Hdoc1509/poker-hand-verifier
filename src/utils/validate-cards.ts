@@ -14,7 +14,10 @@ export const ERROR_MESSAGE = Object.freeze({
     `Array can not have repeated cards. Found repeated card: ${card}.`,
 });
 
-type ValidatedData = { ok: boolean; error?: string };
+type ValidatedData = {
+  ok: boolean;
+  error?: string;
+};
 
 type options = { minimum?: number };
 
