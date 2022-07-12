@@ -18,10 +18,6 @@ export const isPair = (
   return matches.length === 2 && allDifferentNumbers(restNumbers);
 };
 
-/** Check if hand is any possible PAIR */
-export const isAnyPair = (cards: Array<Card>): boolean =>
-  cards.some(({ number }) => isPair(cards, number));
-
 /** Searchs for any possible PAIR and returns its card number */
 export const findPair = (cards: Array<Card>): string =>
   cards.find(({ number }) => isPair(cards, number))?.number;
