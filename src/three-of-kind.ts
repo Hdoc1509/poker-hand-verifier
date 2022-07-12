@@ -8,20 +8,20 @@ import { Card } from './index';
 /** Check if hand is an specific THREE OF A KIND */
 export const isThreeOfKind = (
   cards: Array<Card>,
-  { number }: Card
+  numberToCheckThreeOfKind: string
 ): boolean => {
-  const { matches, notMatches: restNumbers } = numberMatches(cards, number);
+  const { matches, notMatches: restNumbers } = numberMatches(cards, numberToCheckThreeOfKind);
 
   return matches.length === 3 && allDifferentNumbers(restNumbers);
 };
 
 /** Check if hand is any possible THREE OF KIND */
 export const isAnyThreeOfKind = (cards: Array<Card>): boolean =>
-  cards.some((card) => isThreeOfKind(cards, card));
+  cards.some(({ number }) => isThreeOfKind(cards, number));
 
 /** Searchs for any possible THREE OF KIND and returns its card number */
 export const findThreeOfKind = (cards: Array<Card>): string =>
-  cards.find((card) => isThreeOfKind(cards, card)).number;
+  cards.find(({ number }) => isThreeOfKind(cards, number)).number;
 
 /** Returns the number that compose the THREE OF A KIND in the hand */
 export const getThreeOfKind = (cards: Array<Card>): Set<string> => {
