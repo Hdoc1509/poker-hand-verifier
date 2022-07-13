@@ -1,8 +1,7 @@
-import { allSameSuit } from './other-checkings';
 import { findPair } from './pair';
 import { findTwoPair } from './two-pair';
 import { findThreeOfKind } from './three-of-kind';
-import { isAnyStraight, findStraight } from './straight';
+import { findStraight } from './straight';
 import { isFlush } from './flush';
 import { isAnyFullHouse, findFullHouse } from './full-house';
 import { isAnyFourOfKind, findFourOfKind } from './four-of-kind';
@@ -70,28 +69,12 @@ export const verificateHand = (cards: Array<Card>): HandData => {
     };
 
   // STRAIGHTS
-  if (isAnyStraight(cards)) {
-    const straight = findStraight(cards);
-    const parsedStraight = straight.replace('-', ' - ');
-    const flushSuit = cards[0].suit;
-    const areSameSuit = allSameSuit(cards);
+  const straightData = findStraight(cards);
 
-    if (straight === '10-A')
-      return {
-        cards: stringCards,
-        description: areSameSuit
-          ? `Royal Flush (${flushSuit}): ${parsedStraight}`
-          : `Straight: ${parsedStraight}`,
-        type: areSameSuit ? 'royal-flush' : 'straight',
-      };
+  if (straightData !== undefined) {
+    const { description, type } = straightData;
 
-    return {
-      cards: stringCards,
-      description: areSameSuit
-        ? `Straight Flush (${flushSuit}): ${parsedStraight}`
-        : `Straight: ${parsedStraight}`,
-      type: areSameSuit ? 'straight-flush' : 'straight',
-    };
+    return { cards: stringCards, description, type };
   }
 
   // FLUSH
