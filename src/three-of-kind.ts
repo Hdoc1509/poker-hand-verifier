@@ -15,11 +15,7 @@ export const findThreeOfKind = (cards: Array<Card>): string =>
 /** Returns the number that compose a THREE OF A KIND in the hand */
 export const getThreeOfKind = (cards: Array<Card>): Set<string> => {
   const aux = cards
-    .filter(({ number }) => {
-      const { matches } = numberMatches(cards, number);
-
-      return matches.length === 3;
-    })
+    .filter(({ number }) => numberMatches(cards, number).matches.length === 3)
     .map(({ number }) => number);
 
   return new Set(aux);
