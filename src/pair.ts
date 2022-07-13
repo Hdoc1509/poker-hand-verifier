@@ -8,7 +8,7 @@ export const isPair = (cards: Array<Card>, number: string): boolean => {
   return matches.length === 2 && allDifferentNumbers(restNumbers);
 };
 
-/** Searchs for any possible PAIR and returns its card number */
+/** Searchs for any possible PAIR and returns its card number, otherwise returns undefined */
 export const findPair = (cards: Array<Card>): string =>
   cards.find(({ number }) => isPair(cards, number))?.number;
 
