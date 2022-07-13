@@ -1,7 +1,7 @@
 import { allSameSuit } from './other-checkings';
 import { findPair } from './pair';
 import { findTwoPair } from './two-pair';
-import { isAnyThreeOfKind, findThreeOfKind } from './three-of-kind';
+import { findThreeOfKind } from './three-of-kind';
 import { isAnyStraight, findStraight } from './straight';
 import { isFlush } from './flush';
 import { isAnyFullHouse, findFullHouse } from './full-house';
@@ -60,15 +60,14 @@ export const verificateHand = (cards: Array<Card>): HandData => {
   }
 
   // THREE OF A KIND
-  if (isAnyThreeOfKind(cards)) {
-    const number = findThreeOfKind(cards);
+  const threeOfKindNumber = findThreeOfKind(cards);
 
+  if (threeOfKindNumber !== undefined)
     return {
       cards: stringCards,
-      description: `Three of a Kind (${number})`,
+      description: `Three of a Kind (${threeOfKindNumber})`,
       type: 'three-of-kind',
     };
-  }
 
   // STRAIGHTS
   if (isAnyStraight(cards)) {
