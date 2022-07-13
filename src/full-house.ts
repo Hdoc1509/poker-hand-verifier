@@ -15,7 +15,7 @@ export const isAnyFullHouse = (cards: Array<Card>): boolean => {
   return pairs.size === 1 && threeOfKind.size === 1;
 };
 
-/** Retrieves the numbers that compose the FULL HOUSE in the hand */
+/** If hand is a FULL HOUSE retrieves its composing numbers, otherwise returns undefined */
 export const findFullHouse = (cards: Array<Card>): FullHouseData => {
   const [pair] = Array.from(getPairs(cards));
   const [threeOfKind] = Array.from(getThreeOfKind(cards));
