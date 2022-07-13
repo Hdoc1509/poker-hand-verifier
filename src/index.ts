@@ -3,7 +3,7 @@ import { findTwoPair } from './two-pair';
 import { findThreeOfKind } from './three-of-kind';
 import { findStraight } from './straight';
 import { isFlush } from './flush';
-import { isAnyFullHouse, findFullHouse } from './full-house';
+import { findFullHouse } from './full-house';
 import { isAnyFourOfKind, findFourOfKind } from './four-of-kind';
 import { isHighCard } from './high-card';
 import { validateCards } from './utils/validate-cards';
@@ -86,12 +86,14 @@ export const verificateHand = (cards: Array<Card>): HandData => {
     };
 
   // FULL HOUSE
-  if (isAnyFullHouse(cards)) {
-    const { pair, threeOfKind } = findFullHouse(cards);
+  const fullHouseData = findFullHouse(cards);
+
+  if (fullHouseData !== undefined) {
+    const { pair, threeOfKind } = fullHouseData;
 
     return {
       cards: stringCards,
-      description: `Full House (Pair of ${pair} & Three of Kind ${threeOfKind})`,
+      description: `Full House (Pair: ${pair} & Three of Kind: ${threeOfKind})`,
       type: 'full-house',
     };
   }
