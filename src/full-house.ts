@@ -35,5 +35,7 @@ export const findFullHouse = (cards: Array<Card>): FullHouseData => {
   const [pair] = Array.from(getPairs(cards));
   const [threeOfKind] = Array.from(getThreeOfKind(cards));
 
+  if (pair === undefined || threeOfKind === undefined) return undefined;
+
   return { pair, threeOfKind };
 };
