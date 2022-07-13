@@ -1,5 +1,10 @@
-import { allDifferentNumbers } from './other-checkings';
+import { allDifferentNumbers, allSameSuit } from './other-checkings';
 import { Card } from './index';
+
+type StraightData = {
+  type: string;
+  description: string;
+};
 
 const STRAIGHT = Object.freeze({
   'A-5': /^A|[2-5]$/,
@@ -24,5 +29,27 @@ export const isAnyStraight = (cards: Array<Card>): boolean =>
   Object.keys(STRAIGHT).some((key) => isStraight(cards, key));
 
 /** Searchs for any possible STRAIGHT and returns it */
-export const findStraight = (cards: Array<Card>): string =>
-  Object.keys(STRAIGHT).find((key) => isStraight(cards, key));
+export const findStraight = (cards: Array<Card>): StraightData => {
+  const straight = Object.keys(STRAIGHT).find((key) => isStraight(cards, key));
+
+  if (straight === undefined) return undefined;
+
+  const parsedStraight = straight.replace('-', ' - ');
+  const areSameSuit = allSameSuit(cards);
+  const [{ suit }] = cards;
+
+  if (straight === '10-A')
+    return {
+      type: areSameSuit ? 'royal-flush' : 'straight',
+      description: areSameSuit
+        ? `Royal Flush (${suit})`
+        : `Straight: ${parsedStraight}`,
+    };
+
+  return {
+    type: areSameSuit ? 'straight-flush' : 'straight',
+    description: `Straight${
+      areSameSuit ? ` Flush (${suit})` : ''
+    }: ${parsedStraight}`,
+  };
+};
