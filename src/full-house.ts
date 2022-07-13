@@ -7,21 +7,6 @@ export type FullHouseData = {
   threeOfKind: string;
 };
 
-/** Check if hand is an specific FULL HOUSE */
-export const isFullHouse = (
-  cards: Array<Card>,
-  [{ number: number1 }, { number: number2 }]: Array<Card>
-): boolean => {
-  const number1Matches = cards.filter(({ number }) => number === number1);
-  const number2Matches = cards.filter(({ number }) => number === number2);
-
-  return (
-    ((number1Matches.length === 3 && number2Matches.length === 2) ||
-      (number1Matches.length === 2 && number2Matches.length === 3)) &&
-    number1 !== number2
-  );
-};
-
 /** Check if hand is any possible FULL HOUSE */
 export const isAnyFullHouse = (cards: Array<Card>): boolean => {
   const pairs = getPairs(cards);
