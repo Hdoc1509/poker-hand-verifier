@@ -25,7 +25,7 @@ const threeOfKind2 = [
 ];
 
 describe('--- getThreeOfKind() ---', () => {
-  test('If there is no THREE OF A KIND', () => {
+  test('If there is no THREE OF A KIND returns an empty Set', () => {
     expect(getThreeOfKind(noThreeOfKind)).toEqual(new Set());
   });
 
