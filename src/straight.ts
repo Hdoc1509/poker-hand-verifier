@@ -1,4 +1,4 @@
-import { allDifferentNumbers, allSameSuit } from './other-checkings';
+import { allSameSuit } from './other-checkings';
 import { Card } from './index';
 
 type StraightData = {
@@ -21,8 +21,7 @@ const STRAIGHT = Object.freeze({
 
 /** Check if hand is an specific STRAIGHT */
 export const isStraight = (cards: Array<Card>, straight: string): boolean =>
-  cards.every(({ number }) => number.match(STRAIGHT[straight])) &&
-  allDifferentNumbers(cards);
+  cards.every(({ number }) => number.match(STRAIGHT[straight]));
 
 /** Searchs for any possible STRAIGHT and returns it */
 export const findStraight = (cards: Array<Card>): StraightData => {
