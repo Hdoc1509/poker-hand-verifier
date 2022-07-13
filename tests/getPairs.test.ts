@@ -7,7 +7,7 @@ const validCards = [
 ];
 
 describe('--- getPairs() ---', () => {
-  test("If there are no PAIR's returns an empty Set", () => {
+  test('If there are no PAIRS returns an empty Set', () => {
     const cards = [
       ...validCards,
       { number: 'A', suit: 'H' },
