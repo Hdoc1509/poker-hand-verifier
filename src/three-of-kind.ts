@@ -1,8 +1,4 @@
-import {
-  allDifferentNumbers,
-  allSameSuit,
-  numberMatches,
-} from './other-checkings';
+import { allDifferentNumbers, numberMatches } from './other-checkings';
 import { Card } from './index';
 
 /** Check if hand is an specific THREE OF A KIND */
@@ -22,7 +18,7 @@ export const getThreeOfKind = (cards: Array<Card>): Set<string> => {
     .filter(({ number }) => {
       const { matches } = numberMatches(cards, number);
 
-      return matches.length === 3 && !allSameSuit(matches);
+      return matches.length === 3;
     })
     .map(({ number }) => number);
 
