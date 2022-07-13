@@ -20,7 +20,7 @@ const straight = [
   { number: '8', suit: 'H' },
 ];
 
-const flushStraight = [
+const straightFlush = [
   ...cards,
   { number: '8', suit: 'D' },
   { number: '9', suit: 'D' },
@@ -45,8 +45,8 @@ describe('--- isStraight() ---', () => {
     expect(isStraight(straight, '4-8')).toBeTrue();
   });
 
-  test('Hand is also a FLUSH STRAIGHT returns true', () => {
-    expect(isStraight(flushStraight, '5-9')).toBeTrue();
+  test('Hand is also a STRAIGHT FLUSH returns true', () => {
+    expect(isStraight(straightFlush, '5-9')).toBeTrue();
   });
 
   test('Hand is also a ROYAL FLUSH returns true', () => {
