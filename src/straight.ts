@@ -24,10 +24,6 @@ export const isStraight = (cards: Array<Card>, straight: string): boolean =>
   cards.every(({ number }) => number.match(STRAIGHT[straight])) &&
   allDifferentNumbers(cards);
 
-/** Check if hand is any possible STRAIGHT */
-export const isAnyStraight = (cards: Array<Card>): boolean =>
-  Object.keys(STRAIGHT).some((key) => isStraight(cards, key));
-
 /** Searchs for any possible STRAIGHT and returns it */
 export const findStraight = (cards: Array<Card>): StraightData => {
   const straight = Object.keys(STRAIGHT).find((key) => isStraight(cards, key));
