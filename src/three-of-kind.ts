@@ -12,10 +12,6 @@ export const isThreeOfKind = (cards: Array<Card>, number: string): boolean => {
   return matches.length === 3 && allDifferentNumbers(restNumbers);
 };
 
-/** Check if hand is any possible THREE OF KIND */
-export const isAnyThreeOfKind = (cards: Array<Card>): boolean =>
-  cards.some(({ number }) => isThreeOfKind(cards, number));
-
 /** Searchs for any possible THREE OF KIND and returns its card number */
 export const findThreeOfKind = (cards: Array<Card>): string =>
   cards.find(({ number }) => isThreeOfKind(cards, number))?.number;
