@@ -4,7 +4,7 @@ import { findThreeOfKind } from './three-of-kind';
 import { findStraight } from './straight';
 import { isFlush } from './flush';
 import { findFullHouse } from './full-house';
-import { isAnyFourOfKind, findFourOfKind } from './four-of-kind';
+import { findFourOfKind } from './four-of-kind';
 import { isHighCard } from './high-card';
 import { validateCards } from './utils/validate-cards';
 
@@ -99,15 +99,14 @@ export const verificateHand = (cards: Array<Card>): HandData => {
   }
 
   // FOUR OF A KIND
-  if (isAnyFourOfKind(cards)) {
-    const number = findFourOfKind(cards);
+  const fourOfKindNumber = findFourOfKind(cards);
 
+  if (fourOfKindNumber !== undefined)
     return {
       cards: stringCards,
-      description: `Four of a Kind (${number})`,
+      description: `Four of a Kind (${fourOfKindNumber})`,
       type: 'four-of-kind',
     };
-  }
 
   return { cards: stringCards, description: 'Nothing', type: 'nothing' };
 };
