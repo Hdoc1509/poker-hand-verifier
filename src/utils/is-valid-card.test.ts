@@ -18,6 +18,8 @@ describe('--- isValidCard() ---', () => {
     expect(isValidCard([])).toBeFalse();
     expect(isValidCard({})).toBeFalse();
     expect(isValidCard(invalidCard)).toBeFalse();
+    expect(isValidCard({ number: 'AA', suit: 'C' })).toBeFalse();
+    expect(isValidCard({ number: 'A', suit: 'CH' })).toBeFalse();
   });
 
   test('Valid card returns true', () => {
