@@ -72,11 +72,8 @@ export const verificateHand = (cards: Array<Card>): HandData => {
   // STRAIGHTS
   const straightData = findStraight(cards);
 
-  if (straightData !== undefined) {
-    const { description, type } = straightData;
-
-    return { cards: stringCards, description, type };
-  }
+  if (straightData !== undefined)
+    return { cards: stringCards, ...straightData };
 
   // FLUSH
   if (isFlush(cards))
