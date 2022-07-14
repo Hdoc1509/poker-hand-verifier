@@ -54,7 +54,7 @@ export const verificateHand = (cards: Array<Card>): HandData => {
 
     return {
       cards: stringCards,
-      description: `Two Pair: (${pair1} & ${pair2})`,
+      description: `Two Pair (${pair1} & ${pair2})`,
       type: 'two-pair',
     };
   }
