@@ -7,6 +7,7 @@ import { findFullHouse } from './full-house';
 import { findFourOfKind } from './four-of-kind';
 import { isHighCard } from './high-card';
 import { validateCards } from './utils/validate-cards';
+import { stringifyCards } from './utils/stringify-cards';
 
 export type Card = {
   number: string;
@@ -25,7 +26,7 @@ export const verificateHand = (cards: Array<Card>): HandData => {
 
   if (!validation.ok) throw new Error(validation.error);
 
-  const stringCards = cards.map(({ number, suit }) => `${number}${suit}`);
+  const stringCards = stringifyCards(cards);
 
   // HIGH CARD
   if (isHighCard(cards))
