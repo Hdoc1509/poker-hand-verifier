@@ -12,6 +12,6 @@ export const isFourOfKind = (cards: Array<Card>, number: string): boolean => {
 export const isAnyFourOfKind = (cards: Array<Card>) =>
   cards.some(({ number }) => isFourOfKind(cards, number));
 
-/** Searchs for any possible FOUR OF A KIND and returns its card number */
+/** If hand is a FOUR OF A KIND returns its card number, otherwise returns undefined */
 export const findFourOfKind = (cards: Array<Card>): string =>
-  cards.find(({ number }) => isFourOfKind(cards, number)).number;
+  cards.find(({ number }) => isFourOfKind(cards, number))?.number;
