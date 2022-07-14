@@ -32,7 +32,7 @@ export const verificateHand = (cards: Array<Card>): HandData => {
   if (isHighCard(cards))
     return {
       cards: stringCards,
-      description: 'High Card (A)',
+      description: 'High Card',
       type: 'high-card',
     };
 
