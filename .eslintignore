@@ -1,5 +1,6 @@
 esm
 cjs
+dist
 types
 build.js
 jest.config.js
