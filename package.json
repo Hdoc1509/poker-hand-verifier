@@ -4,7 +4,7 @@
   "description": "Provides a verifier for a poker hand with 5 cards.",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
-  "types": "./types/types.d.ts",
+  "types": "index.d.ts",
   "engines": {
     "node": ">=14"
   },
