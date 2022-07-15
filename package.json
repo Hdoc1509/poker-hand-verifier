@@ -5,6 +5,9 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./types/types.d.ts",
+  "engines": {
+    "node": "node>=14"
+  },
   "files": [
     "cjs",
     "esm",
