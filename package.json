@@ -37,6 +37,7 @@
     "evaluator",
     "verifier"
   ],
+  "unpkg": "dist/pokerhandverifier.min.js",
   "author": "Hdoc1509",
   "license": "MIT",
   "bugs": {
