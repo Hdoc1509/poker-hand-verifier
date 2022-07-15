@@ -6,7 +6,7 @@
   "module": "./esm/index.js",
   "types": "./types/types.d.ts",
   "engines": {
-    "node": "node>=14"
+    "node": ">=14"
   },
   "files": [
     "cjs",
