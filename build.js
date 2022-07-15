@@ -21,3 +21,15 @@ build({
     arrow: false,
   },
 });
+
+build({
+  ...options,
+  format: 'iife',
+  outfile: 'dist/pokerhandverifier.min.js',
+  minify: true,
+  target: 'es6',
+  globalName: 'verificateHand',
+  supported: {
+    arrow: false,
+  }
+});
