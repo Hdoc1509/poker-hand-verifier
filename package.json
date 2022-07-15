@@ -18,7 +18,6 @@
   },
   "scripts": {
     "build": "node build.js",
-    "build-types": "npm-dts --output types/types.d.ts generate",
     "test": "jest tests src/utils --colors --verbose",
     "test-source": "jest tests --colors --verbose",
     "test-utils": "jest src/utils --colors --verbose"
