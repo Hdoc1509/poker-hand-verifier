@@ -11,6 +11,7 @@
   "files": [
     "cjs",
     "esm",
+    "dist",
     "types"
   ],
   "exports": {
