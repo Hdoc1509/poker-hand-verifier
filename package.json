@@ -1,7 +1,7 @@
 {
   "name": "poker-hand-verifier",
   "version": "1.0.0",
-  "description": "Provides a lot a functions to verify a hand of poker with 5 cards.",
+  "description": "Provides a verifier for a poker hand with 5 cards.",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./types/types.d.ts",

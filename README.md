@@ -1,3 +1,3 @@
 # Poker Hand Verifier
 
-Provides a lot a functions to verify a hand of poker with 5 cards.
+Provides a verifier for a poker hand with 5 cards.
