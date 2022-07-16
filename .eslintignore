@@ -4,3 +4,4 @@ dist
 types
 build.js
 jest.config.js
+*.md
