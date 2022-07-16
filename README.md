@@ -41,7 +41,7 @@ console.log(verificateHand(myCards));
 // }
 ```
 
-Using with CDN, verificateHand() will be available as a global variable.
+Using with CDN, verificateHand() will be available as a global function.
 
 ```html
 <script src="https://unpkg.com/poker-hand-verifier/dist/poker-hand-verifier.min.js"></script>
