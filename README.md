@@ -41,4 +41,27 @@ console.log(verificateHand(myCards));
 // }
 ```
 
+Using with CDN, verificateHand() will be available as a global variable.
+
+```html
+<script src="https://unpkg.com/poker-hand-verifier/dist/poker-hand-verifier.min.js"></script>
+
+<script>
+  const myCards = [
+    { number: '10', suit: 'S' },
+    { number: 'K', suit: 'S' },
+    { number: 'J', suit: 'S' },
+    { number: 'Q', suit: 'S' },
+    { number: 'A', suit: 'S' },
+  ];
+
+  console.log(verificateHand(myCards));
+  // {
+  //   cards: ['10S', 'KH', 'JD', 'QS', 'AC'],
+  //   description: 'Royal Flush (S)',
+  //   type: 'royal-flush'
+  // }
+</script>
+```
+
 <!-- TODO: Test package using npm link -->
