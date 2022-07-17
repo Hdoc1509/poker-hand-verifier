@@ -1,7 +1,5 @@
 # folders
 node_modules
-esm
-cjs
 
 # files
 package-lock.json
