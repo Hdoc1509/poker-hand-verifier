@@ -63,5 +63,3 @@ Using with CDN, verificateHand() will be available as a global function.
   // }
 </script>
 ```
-
-<!-- TODO: Test package using npm link -->
