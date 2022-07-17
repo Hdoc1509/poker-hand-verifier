@@ -1,4 +1,4 @@
-name: poker-hand-verifier CI
+name: CI
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - run: npm ci
+      - run: npm ci --no-audit
       - run: npm run lint
 
   test:
@@ -35,5 +35,5 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - run: npm ci
+      - run: npm ci --no-audit
       - run: npm test
