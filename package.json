@@ -26,7 +26,8 @@
     "test": "jest tests src/utils --colors --verbose",
     "test-source": "jest tests --colors --verbose",
     "test-utils": "jest src/utils --colors --verbose",
-    "update-dependencies": "ncu --color --packageFile package.json -u"
+    "check-dependencies": "ncu --color --packageFile package.json",
+    "update-dependencies": "npm run check-dependencies -- -u"
   },
   "repository": {
     "type": "git",
@@ -50,11 +51,11 @@
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
     "esbuild": "0.14.49",
-    "eslint": "8.19.0",
+    "eslint": "8.20.0",
     "jest": "28.1.3",
     "jest-extended": "3.0.1",
-    "npm-check-updates": "15.3.3",
-    "ts-jest": "28.0.6",
+    "npm-check-updates": "15.3.4",
+    "ts-jest": "28.0.7",
     "typescript": "4.7.4"
   }
 }
