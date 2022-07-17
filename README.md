@@ -6,7 +6,7 @@ It works on browser and server side.
 
 ## Installation
 
-Using npm with Node.js >= 14:
+Using npm with Node.js >= 12:
 
 ```sh
 npm install poker-hand-verifier
