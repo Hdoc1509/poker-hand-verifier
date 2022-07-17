@@ -1,3 +1,5 @@
+[![poker-hand-verifier CI](https://github.com/Hdoc1509/poker-hand-verifier/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Hdoc1509/poker-hand-verifier/actions/workflows/ci.yml)
+
 # Poker Hand Verifier
 
 Provides a verifier for a poker hand of 5 cards.
