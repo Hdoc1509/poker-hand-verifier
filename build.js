@@ -3,23 +3,23 @@ const { build } = require('esbuild');
 const options = {
   entryPoints: ['src/index.ts'],
   bundle: true,
+  supported: {
+    arrow: false,
+  },
 };
 
 build({
   ...options,
   format: 'cjs',
-  outdir: 'cjs',
-  target: 'node14',
+  outfile: 'cjs/index.cjs',
+  target: 'node12',
 });
 
 build({
   ...options,
   format: 'esm',
-  outdir: 'esm',
+  outfile: 'esm/index.mjs',
   target: 'es6',
-  supported: {
-    arrow: false,
-  },
 });
 
 build({
@@ -29,7 +29,4 @@ build({
   minify: true,
   target: 'es6',
   globalName: 'verificateHand',
-  supported: {
-    arrow: false,
-  }
 });
