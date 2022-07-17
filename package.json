@@ -2,8 +2,8 @@
   "name": "poker-hand-verifier",
   "version": "1.0.0",
   "description": "Provides a verifier for a poker hand with 5 cards.",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
+  "main": "./cjs/index.mjs",
+  "module": "./esm/index.cjs",
   "types": "index.d.ts",
   "engines": {
     "node": ">=12"
@@ -16,8 +16,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "require": "./cjs/index.js"
+      "import": "./esm/index.mjs",
+      "require": "./cjs/index.cjs"
     }
   },
   "scripts": {
