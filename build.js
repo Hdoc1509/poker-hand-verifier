@@ -11,14 +11,14 @@ const options = {
 build({
   ...options,
   format: 'cjs',
-  outfile: 'cjs/index.cjs',
+  outfile: 'dist/poker-hand-verifier.js',
   target: 'node12',
 });
 
 build({
   ...options,
   format: 'esm',
-  outfile: 'esm/index.mjs',
+  outfile: 'dist/poker-hand-verifier.mjs',
   target: 'es6',
 });
 

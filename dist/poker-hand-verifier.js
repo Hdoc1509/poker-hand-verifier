@@ -19,7 +19,9 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  verificateHand: () => verificateHand
+  verificateHand: function() {
+    return verificateHand;
+  }
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -27,7 +29,7 @@ module.exports = __toCommonJS(src_exports);
 var VALID_SUIT = /^(H|S|C|D){1}$/;
 var VALID_NUMBER = /^(A|[2-9]|10|J|Q|K){1}$/;
 var NOT_FOUND_INVALID_INDEX = -1;
-var isValidCard = (card) => {
+var isValidCard = function(card) {
   if ((card == null ? void 0 : card.number) === void 0 || (card == null ? void 0 : card.suit) === void 0)
     return false;
   const { number, suit } = card;
@@ -37,13 +39,19 @@ var isValidCard = (card) => {
     return false;
   return true;
 };
-var getInvalidCardIndex = (cards) => cards.findIndex((card) => !isValidCard(card));
+var getInvalidCardIndex = function(cards) {
+  return cards.findIndex(function(card) {
+    return !isValidCard(card);
+  });
+};
 
 // src/utils/repeated-card.ts
-var getRepeatedCard = (cards) => {
-  const stringCards = cards.map(({ number, suit }) => `${number}${suit}`);
+var getRepeatedCard = function(cards) {
+  const stringCards = cards.map(function({ number, suit }) {
+    return `${number}${suit}`;
+  });
   const uniqueCards = Array.from(new Set(stringCards));
-  const repeatedCards = uniqueCards.filter((card) => {
+  const repeatedCards = uniqueCards.filter(function(card) {
     var _a;
     const regExp = new RegExp(card, "g");
     return ((_a = stringCards.join("").match(regExp)) == null ? void 0 : _a.length) >= 2;
@@ -55,11 +63,17 @@ var getRepeatedCard = (cards) => {
 // src/utils/validate-cards.ts
 var ERROR_MESSAGE = Object.freeze({
   NotArray: "Expected an Array as argument.",
-  QuantityCards: (received, { minimum = 2 } = {}) => `Expected an Array of ${minimum === 5 ? "5 cards" : `minimum ${minimum} and maximum 5 cards`}. Received ${received} instead.`,
-  InvalidCard: (index) => `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${index}.`,
-  RepeatedCard: (card) => `Array can not have repeated cards. Found repeated card: ${card}.`
+  QuantityCards: function(received, { minimum = 2 } = {}) {
+    return `Expected an Array of ${minimum === 5 ? "5 cards" : `minimum ${minimum} and maximum 5 cards`}. Received ${received} instead.`;
+  },
+  InvalidCard: function(index) {
+    return `All cards must have "number" and "suit" properties values correctly. Found invalid card at index ${index}.`;
+  },
+  RepeatedCard: function(card) {
+    return `Array can not have repeated cards. Found repeated card: ${card}.`;
+  }
 });
-var validateCards = (cards = [], { minimum = 2 } = {}) => {
+var validateCards = function(cards = [], { minimum = 2 } = {}) {
   if (!Array.isArray(cards))
     return { ok: false, error: ERROR_MESSAGE.NotArray };
   if (cards.length < minimum || cards.length > 5)
@@ -75,7 +89,7 @@ var validateCards = (cards = [], { minimum = 2 } = {}) => {
     return { ok: false, error: ERROR_MESSAGE.RepeatedCard(repeatedCard) };
   return { ok: true };
 };
-var validateQuantity = (cards, minimum) => {
+var validateQuantity = function(cards, minimum) {
   const received = cards.length;
   if (received < minimum)
     return {
@@ -86,21 +100,25 @@ var validateQuantity = (cards, minimum) => {
 };
 
 // src/other-checkings.ts
-var allDifferentNumbers = (cards) => {
+var allDifferentNumbers = function(cards) {
   const validation = validateQuantity(cards, 2);
   if (!validation.ok)
     throw new Error(validation.error);
-  const numbers = new Set(cards.map(({ number }) => number));
+  const numbers = new Set(cards.map(function({ number }) {
+    return number;
+  }));
   return numbers.size === cards.length;
 };
-var allSameSuit = (cards) => {
+var allSameSuit = function(cards) {
   const validation = validateQuantity(cards, 2);
   if (!validation.ok)
     throw new Error(validation.error);
-  const suits = new Set(cards.map(({ suit }) => suit));
+  const suits = new Set(cards.map(function({ suit }) {
+    return suit;
+  }));
   return suits.size === 1;
 };
-var numberMatches = (cards = [], numberToCheckMatches = null) => {
+var numberMatches = function(cards = [], numberToCheckMatches = null) {
   const validation = validateCards(cards, { minimum: 5 });
   if (!validation.ok)
     throw new Error(`Invalid Array of cards. ${validation.error}`);
@@ -109,42 +127,58 @@ var numberMatches = (cards = [], numberToCheckMatches = null) => {
   if (numberToCheckMatches.match(VALID_NUMBER) === null)
     throw new Error('Argument "numberToCheckMatches" is not a valid number');
   return {
-    matches: cards.filter(({ number }) => number === numberToCheckMatches),
-    notMatches: cards.filter(({ number }) => number !== numberToCheckMatches)
+    matches: cards.filter(function({ number }) {
+      return number === numberToCheckMatches;
+    }),
+    notMatches: cards.filter(function({ number }) {
+      return number !== numberToCheckMatches;
+    })
   };
 };
 
 // src/pair.ts
-var isPair = (cards, number) => {
+var isPair = function(cards, number) {
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
   return matches.length === 2 && allDifferentNumbers(restNumbers);
 };
-var findPair = (cards) => {
+var findPair = function(cards) {
   var _a;
-  return (_a = cards.find(({ number }) => isPair(cards, number))) == null ? void 0 : _a.number;
+  return (_a = cards.find(function({ number }) {
+    return isPair(cards, number);
+  })) == null ? void 0 : _a.number;
 };
-var getPairs = (cards) => {
-  const pairs = cards.filter(({ number }) => numberMatches(cards, number).matches.length === 2).map(({ number }) => number);
+var getPairs = function(cards) {
+  const pairs = cards.filter(function({ number }) {
+    return numberMatches(cards, number).matches.length === 2;
+  }).map(function({ number }) {
+    return number;
+  });
   return new Set(pairs);
 };
 
 // src/two-pair.ts
-var findTwoPair = (cards) => {
+var findTwoPair = function(cards) {
   const pairs = getPairs(cards);
   return pairs.size === 2 ? Array.from(pairs) : void 0;
 };
 
 // src/three-of-kind.ts
-var isThreeOfKind = (cards, number) => {
+var isThreeOfKind = function(cards, number) {
   const { matches, notMatches: restNumbers } = numberMatches(cards, number);
   return matches.length === 3 && allDifferentNumbers(restNumbers);
 };
-var findThreeOfKind = (cards) => {
+var findThreeOfKind = function(cards) {
   var _a;
-  return (_a = cards.find(({ number }) => isThreeOfKind(cards, number))) == null ? void 0 : _a.number;
+  return (_a = cards.find(function({ number }) {
+    return isThreeOfKind(cards, number);
+  })) == null ? void 0 : _a.number;
 };
-var getThreeOfKind = (cards) => {
-  const aux = cards.filter(({ number }) => numberMatches(cards, number).matches.length === 3).map(({ number }) => number);
+var getThreeOfKind = function(cards) {
+  const aux = cards.filter(function({ number }) {
+    return numberMatches(cards, number).matches.length === 3;
+  }).map(function({ number }) {
+    return number;
+  });
   return new Set(aux);
 };
 
@@ -161,9 +195,15 @@ var STRAIGHT = Object.freeze({
   "9-K": /^9|10|J|Q|K$/,
   "10-A": /^10|J|Q|K|A$/
 });
-var isStraight = (cards, straight) => cards.every(({ number }) => number.match(STRAIGHT[straight])) && allDifferentNumbers(cards);
-var findStraight = (cards) => {
-  const straight = Object.keys(STRAIGHT).find((key) => isStraight(cards, key));
+var isStraight = function(cards, straight) {
+  return cards.every(function({ number }) {
+    return number.match(STRAIGHT[straight]);
+  }) && allDifferentNumbers(cards);
+};
+var findStraight = function(cards) {
+  const straight = Object.keys(STRAIGHT).find(function(key) {
+    return isStraight(cards, key);
+  });
   if (straight === void 0)
     return void 0;
   const parsedStraight = straight.replace("-", " - ");
@@ -181,10 +221,12 @@ var findStraight = (cards) => {
 };
 
 // src/flush.ts
-var isFlush = (cards) => allSameSuit(cards);
+var isFlush = function(cards) {
+  return allSameSuit(cards);
+};
 
 // src/full-house.ts
-var findFullHouse = (cards) => {
+var findFullHouse = function(cards) {
   const [pair] = Array.from(getPairs(cards));
   const [threeOfKind] = Array.from(getThreeOfKind(cards));
   if (pair === void 0 || threeOfKind === void 0)
@@ -193,26 +235,32 @@ var findFullHouse = (cards) => {
 };
 
 // src/four-of-kind.ts
-var isFourOfKind = (cards, number) => {
+var isFourOfKind = function(cards, number) {
   const { matches } = numberMatches(cards, number);
   return matches.length === 4;
 };
-var findFourOfKind = (cards) => {
+var findFourOfKind = function(cards) {
   var _a;
-  return (_a = cards.find(({ number }) => isFourOfKind(cards, number))) == null ? void 0 : _a.number;
+  return (_a = cards.find(function({ number }) {
+    return isFourOfKind(cards, number);
+  })) == null ? void 0 : _a.number;
 };
 
 // src/high-card.ts
-var isHighCard = (cards) => {
+var isHighCard = function(cards) {
   const { matches: aces } = numberMatches(cards, "A");
   return aces.length === 1 && allDifferentNumbers(cards) && !allSameSuit(cards);
 };
 
 // src/utils/stringify-cards.ts
-var stringifyCards = (cards) => cards.map(({ number, suit }) => `${number}${suit}`);
+var stringifyCards = function(cards) {
+  return cards.map(function({ number, suit }) {
+    return `${number}${suit}`;
+  });
+};
 
 // src/index.ts
-var verificateHand = (cards) => {
+var verificateHand = function(cards) {
   const validation = validateCards(cards, { minimum: 5 });
   if (!validation.ok)
     throw new Error(validation.error);
