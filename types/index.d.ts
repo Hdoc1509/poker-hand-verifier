@@ -1,8 +1,8 @@
-export type Card = {
+type Card = {
   number: string;
   suit: string;
 };
-export type HandData = {
+type HandData = {
   cards: Array<string>;
   description: string;
   type: string;
