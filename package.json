@@ -15,7 +15,7 @@
   "exports": {
     ".": {
       "import": "./dist/poker-hand-verifier.mjs",
-      "require": "./dist/poker-hand-verifier.cjs"
+      "require": "./dist/poker-hand-verifier.js"
     }
   },
   "unpkg": "dist/poker-hand-verifier.min.js",
