@@ -2,24 +2,23 @@
   "name": "poker-hand-verifier",
   "version": "1.0.0",
   "description": "Provides a verifier for a poker hand with 5 cards.",
-  "main": "./cjs/index.mjs",
-  "module": "./esm/index.cjs",
+  "main": "./dist/poker-hand-verifier.js",
+  "module": "./dist/poker-hand-verifier.mjs",
   "types": "types/index.d.ts",
   "engines": {
     "node": ">=12"
   },
   "files": [
-    "cjs",
-    "esm",
     "dist",
     "types"
   ],
   "exports": {
     ".": {
-      "import": "./esm/index.mjs",
-      "require": "./cjs/index.cjs"
+      "import": "./dist/poker-hand-verifier.mjs",
+      "require": "./dist/poker-hand-verifier.cjs"
     }
   },
+  "unpkg": "dist/poker-hand-verifier.min.js",
   "scripts": {
     "build": "node build.js",
     "lint": "eslint --color src/**",
@@ -39,7 +38,6 @@
     "evaluator",
     "verifier"
   ],
-  "unpkg": "dist/poker-hand-verifier.min.js",
   "author": "Hdoc1509",
   "license": "MIT",
   "bugs": {
