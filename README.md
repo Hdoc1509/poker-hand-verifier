@@ -43,7 +43,7 @@ console.log(verificateHand(myCards));
 // }
 ```
 
-Using with CDN, verificateHand() will be available as a global function.
+Using with CDN, verificateHand() will be available as a method of a global variable called 'pokerHandVerifier'.
 
 ```html
 <script src="https://unpkg.com/poker-hand-verifier/dist/poker-hand-verifier.min.js"></script>
@@ -57,7 +57,7 @@ Using with CDN, verificateHand() will be available as a global function.
     { number: 'A', suit: 'S' },
   ];
 
-  console.log(verificateHand(myCards));
+  console.log(pokerHandVerifier.verificateHand(myCards));
   // {
   //   cards: ['10S', 'KH', 'JD', 'QS', 'AC'],
   //   description: 'Royal Flush (S)',
