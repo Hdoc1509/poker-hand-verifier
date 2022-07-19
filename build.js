@@ -28,5 +28,5 @@ build({
   outfile: 'dist/poker-hand-verifier.min.js',
   minify: true,
   target: 'es6',
-  globalName: 'verificateHand',
+  globalName: 'pokerHandVerifier',
 });
