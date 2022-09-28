@@ -24,9 +24,7 @@
     "lint": "eslint --color src/**",
     "test": "jest tests src/utils --colors --verbose",
     "test-source": "jest tests --colors --verbose",
-    "test-utils": "jest src/utils --colors --verbose",
-    "check-dependencies": "ncu --color --packageFile package.json",
-    "update-dependencies": "npm run check-dependencies -- -u"
+    "test-utils": "jest src/utils --colors --verbose"
   },
   "repository": {
     "type": "git",
